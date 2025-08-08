@@ -22,10 +22,12 @@ class Torre(pygame.sprite.Sprite):
             dist_y = (inimigo.y - self.location[1]) ** 2
             dist = math.sqrt(dist_x + dist_y)
             if(dist < self.range):
-                inimigo.vida -= self.dano
-                self.ultimo_tiro = pygame.time.get_ticks()
-                break
-    def turno(self, inimigos):
+                if(inimigo.vida > 0):
+                    inimigo.vida -= self.dano
+                    self.ultimo_tiro = pygame.time.get_ticks()
+                    print("a")
+                    break
+    def update(self, inimigos):
         if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd:
                 self.atacar(inimigos)
     
