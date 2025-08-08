@@ -8,7 +8,7 @@ def create_tower(x, y):
             for t in torretas:
                 if(grid_x == t.tile[0] and grid_y == t.tile[1]):
                     flag = True
-                    break;
+                    break
             if(not flag):
                 torretas.add(torre.Torre((grid_x, grid_y)))
 screen = pygame.display.set_mode((1280, 704))

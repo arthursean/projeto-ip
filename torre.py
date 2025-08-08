@@ -6,7 +6,7 @@ class Torre(pygame.sprite.Sprite):
         super().__init__()
         self.path = "teste.png"
         self.tile = pos
-        self.location = ((pos[0] + 0.5) * 64, (pos[1] + 0.5) *64)
+        self.location = ((pos[0]) * 64, (pos[1]) *64)
         self.range = DADOS['range']
         self.dano = DADOS['dmg']
         self.cd = DADOS['cooldown']
@@ -21,9 +21,9 @@ class Torre(pygame.sprite.Sprite):
             dist_x = (inimigo.x - self.location[0]) ** 2
             dist_y = (inimigo.y - self.location[1]) ** 2
             dist = math.sqrt(dist_x + dist_y)
-            if(dist < self.range):
+            if(dist < self.range and inimigo.vivo):
                 if(inimigo.vida > 0):
-                    inimigo.vida -= self.dano
+                    inimigo.dano(self.dano)
                     self.ultimo_tiro = pygame.time.get_ticks()
                     print("a")
                     break
