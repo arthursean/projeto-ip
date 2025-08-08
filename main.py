@@ -2,12 +2,20 @@ import pygame
 import torre 
 pygame.init()
 
-torretas = []
-screen = pygame.display.set_mode((832, 832))
-coord_usadas = []
-map_image = pygame.image.load("map3.png").convert()  
+def create_tower(x, y):
+            grid_x, grid_y = x//64, y//64
+            flag = False
+            for t in torretas:
+                if(grid_x == t.tile[0] and grid_y == t.tile[1]):
+                    flag = True
+                    break;
+            if(not flag):
+                torretas.add(torre.Torre((grid_x, grid_y)))
+screen = pygame.display.set_mode((1280, 704))
+torretas = pygame.sprite.Group()
+map_image = pygame.image.load("map3.png").convert_alpha()
+teste = pygame.image.load("teste.png").convert_alpha() 
 run = True
-screen.fill((20, 130, 10))
 while run:
     screen.blit(map_image, (0, 0)) 
     for event in pygame.event.get():
@@ -15,10 +23,10 @@ while run:
             run = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
             x, y = pygame.mouse.get_pos()
-            grid_x, grid_y = x//64, y//64
-            torretas.append(torre.Torre())
+            create_tower(x, y)
     for t in torretas:
         t.draw(screen)
+    torretas.update(inimigos)
     pygame.display.update()
 
 
