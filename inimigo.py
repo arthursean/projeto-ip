@@ -47,7 +47,7 @@ class tank(inimigo):
     def __init__(self, path):
         super().__init__(path, velocidade=2, vida=200, img_path="BFB.png")
 
-#pra rodar no pygame so tirar o # desse trecho aq embaixo
+#pra rodar no pygame so tirar o # desse trecho aq embaixo!
 
 #pygame.init()
 #screen = pygame.display.set_mode((1280, 720))
