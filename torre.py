@@ -6,7 +6,7 @@ class Torre(pygame.sprite.Sprite):
         super().__init__()
         self.path = "teste.png"
         self.tile = pos
-        self.location = ((pos[0] + 0.5) * 64, (pos[1] + 0.5) *64)
+        self.location = ((pos[0]) * 64, (pos[1]) *64)
         self.range = DADOS['range']
         self.dano = DADOS['dmg']
         self.cd = DADOS['cooldown']
