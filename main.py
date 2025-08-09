@@ -1,6 +1,8 @@
 import pygame
 import torre
 import enemies
+import constantes as c
+
 def create_tower(x, y):
             grid_x, grid_y = x//64, y//64
             flag = False
@@ -33,7 +35,8 @@ PATH = [
 pygame.init()
 torretas = pygame.sprite.Group()
 
-screen = pygame.display.set_mode((1280, 704))
+
+screen = pygame.display.set_mode((c.screen_width, c.screen_height))
 clock = pygame.time.Clock()
 mapa = pygame.image.load("map3.png").convert_alpha()
 #desenha o caminho inimigos
@@ -80,5 +83,5 @@ while running:
         if not enemy.vivo:
             enemies.remove(enemy)
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(c.clk)
 pygame.quit()

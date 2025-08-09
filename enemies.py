@@ -6,7 +6,7 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
 
 
     def __init__(self, path, vida, velocidade, img_path):
-
+        super().__init__()
         self.path = path
         self.path_index = 0
         self.x, self.y = self.path[0]
@@ -36,6 +36,7 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
                 self.path_index += 1
 
         else:
+            print("Saiu vivo")
             self.vivo = False
 
     def dano (self, dmg):
