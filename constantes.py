@@ -1,3 +1,4 @@
-screen_width = 1280
-screen_height = 704 
+screen_width = 1088
+screen_height = 702
 clk = 60
+side_panel = 96

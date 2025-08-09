@@ -5,7 +5,7 @@ from dados_torreta import DADOS
 class Torre(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
-        self.path = "teste.png"
+        self.path = "imagens/teste.png"
         self.tile = pos
         self.location = ((pos[0] + 0.5) * 64, (pos[1] + 0.5) *64)
         self.range = DADOS['range']
