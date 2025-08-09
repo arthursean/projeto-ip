@@ -10,6 +10,7 @@ def create_tower(x, y):
                     break
                     break
             if(not flag):
+                print(f"Torre criada em ({x},{y}) nos blocos {grid_x} e {grid_y}")
                 torretas.add(torre.Torre((grid_x, grid_y)))
 #pra rodar no pygame so tirar o # desse trecho aq embaixo
 PATH = [
