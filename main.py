@@ -48,13 +48,10 @@ while running:
             x, y = pygame.mouse.get_pos()
             create_tower(x, y)
     
-    #torretas.update(inimigos)
-
     screen.fill((0,0,0))
     screen.blit(mapa, (0,0))
 
     for t in torretas:
-        t.draw(screen)
         t.update(enemies)
         t.draw(screen)
     for enemy in enemies:
