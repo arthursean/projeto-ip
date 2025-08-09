@@ -48,12 +48,12 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         
 class rapido(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=4, vida=50, img_path="pixilart-drawing (4).png")
+        super().__init__(path, velocidade=4, vida=50, img_path="projeto-ip/pixilart-drawing (4).png")
 
 class tank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=2, vida=200, img_path="pixilart-drawing (4).png")
+        super().__init__(path, velocidade=2, vida=200, img_path="projeto-ip/pixilart-drawing (4).png")
 
 class supertank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=0.5, vida=400, img_path="pixilart-drawing (4).png")
+        super().__init__(path, velocidade=0.5, vida=400, img_path="projeto-ip/pixilart-drawing (4).png")

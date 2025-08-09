@@ -1,6 +1,9 @@
 import pygame
 import torre
 import enemies
+import random
+from coletaveis import COLETAVEIS
+from coletaveis import Coletavel
 def create_tower(x, y):
             grid_x, grid_y = x//64, y//64
             flag = False
@@ -27,10 +30,10 @@ PATH = [
 
 pygame.init()
 torretas = pygame.sprite.Group()
-
+coletaveis = pygame.sprite.Group()
 screen = pygame.display.set_mode((1280, 704))
 clock = pygame.time.Clock()
-mapa = pygame.image.load("map3.png").convert_alpha()
+mapa = pygame.image.load("projeto-ip/map3.png").convert_alpha()
 
 
 #Lista de inimigos -> comentario!!!!!!
@@ -60,6 +63,13 @@ while running:
         enemy.draw(screen)
         if not enemy.vivo:
             enemies.remove(enemy)
+            if enemy.vida <= 0:
+                 if random.random() < 0.9:
+                    nome = random.choice(list(COLETAVEIS.keys()))
+                    imagem = COLETAVEIS[nome]
+                    coletavel = Coletavel(enemy.x, enemy.y, imagem)
+                    coletaveis.add(coletavel)
+    coletaveis.draw(screen)
     pygame.display.flip()
     clock.tick(60)
 
