@@ -1,16 +1,18 @@
 import pygame
 import math
 from dados_torreta import DADOS
+
 class Torre(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
         self.path = "teste.png"
         self.tile = pos
-        self.location = ((pos[0]) * 64, (pos[1]) *64)
+        self.location = ((pos[0] + 0.5) * 64, (pos[1] + 0.5) *64)
         self.range = DADOS['range']
         self.dano = DADOS['dmg']
         self.cd = DADOS['cooldown']
         self.ultimo_tiro = pygame.time.get_ticks()
+        self.som = pygame.mixer.Sound('som_tiro.mp3')
     def draw(self, screen):
         self.img = pygame.image.load(self.path)
         self.img_location = self.img.get_rect()
@@ -25,7 +27,7 @@ class Torre(pygame.sprite.Sprite):
                 if(inimigo.vida > 0):
                     inimigo.dano(self.dano)
                     self.ultimo_tiro = pygame.time.get_ticks()
-                    print("a")
+                    self.som.play()
                     break
     def update(self, inimigos):
         if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd:

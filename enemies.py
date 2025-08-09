@@ -45,7 +45,6 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
             self.vivo = False
     def draw(self, screen):
         screen.blit(self.image, self.rect)
-        
 class rapido(inimigo):
     def __init__(self, path):
         super().__init__(path, velocidade=4, vida=50, img_path="pixilart-drawing (4).png")

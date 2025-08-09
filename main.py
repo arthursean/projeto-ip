@@ -10,18 +10,23 @@ def create_tower(x, y):
                     break
                     break
             if(not flag):
+                print(f"Torre criada em ({x},{y}) nos blocos {grid_x} e {grid_y}")
                 torretas.add(torre.Torre((grid_x, grid_y)))
 #pra rodar no pygame so tirar o # desse trecho aq embaixo
 PATH = [
-(0, 192),    # entra pela esquerda
-(192, 192),  # vai para direita
-(192, 128),  # sobe
-(320, 128),  # vai para direita
-(320, 256),  # desce
-(384, 256),
-(448, 256),
-(448, 320),
-(704, 320),  # vai para direita (saída)
+(0, 224),    # entra pela esquerda
+(352, 224),  # vai para direita
+(352, 96),  # sobe
+(480, 96),  # vai para direita
+(480, 224),  # desce
+(352, 224), #esquerda
+(352, 480), #desce
+(224, 480),
+(224, 352),
+(928, 352),
+(928, 160),
+(1120, 160),
+(1120, 662)  # vai para direita (saída)
 ]
 
 
@@ -62,7 +67,4 @@ while running:
             enemies.remove(enemy)
     pygame.display.flip()
     clock.tick(60)
-
-
-
 pygame.quit()
