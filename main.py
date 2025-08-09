@@ -29,7 +29,7 @@ torretas = pygame.sprite.Group()
 
 screen = pygame.display.set_mode((1280, 704))
 clock = pygame.time.Clock()
-
+mapa = pygame.image.load("map3.png").convert_alpha()
 
 
 #Lista de inimigos -> comentario!!!!!!
@@ -50,7 +50,8 @@ while running:
     
     #torretas.update(inimigos)
 
-    screen.fill((30, 30, 30))
+    screen.fill((0,0,0))
+    screen.blit(mapa, (0,0))
 
     for t in torretas:
         t.draw(screen)

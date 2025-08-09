@@ -15,7 +15,6 @@ class Torre(pygame.sprite.Sprite):
         self.img = pygame.image.load(self.path)
         self.img_location = self.img.get_rect()
         self.img_location.center = self.location
-        screen.blit(self.img, self.img_location)
     def atacar(self, inimigos):
         for inimigo in inimigos:
             dist_x = (inimigo.x - self.location[0]) ** 2
