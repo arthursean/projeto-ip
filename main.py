@@ -50,6 +50,7 @@ placing_torres = False
 
 
 #carrega imagens
+exercito = pygame.image.load("imagens/teste.png").convert_alpha()
 heart = pygame.image.load("imagens/heart.png").convert_alpha()
 heart = pygame.transform.scale_by(heart, 2)
 dinheiro = pygame.image.load("imagens/moeda.png").convert_alpha()
@@ -111,7 +112,11 @@ while running:
         #se estiver colocando torres, aparece o botão de cancelar
     if placing_torres:
         #mostrar a torre na tela
-        cursor_rect = torretas.get_rect()
+        cursor_rect = exercito.get_rect()
+        cursor_pos = pygame.mouse.get_pos()
+        cursor_rect.center = cursor_pos
+        if cursor_pos[0] <= 890:
+            screen.blit(exercito, cursor_rect)
         if cancel_button_sprite.draw(screen):
             placing_torres = False
 
