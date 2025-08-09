@@ -16,19 +16,17 @@ def create_tower(x, y):
                 torretas.add(torre.Torre((grid_x, grid_y)))
 #pra rodar no pygame so tirar o # desse trecho aq embaixo
 PATH = [
-(0, 224),    # entra pela esquerda
-(352, 224),  # vai para direita
-(352, 96),  # sobe
-(480, 96),  # vai para direita
-(480, 224),  # desce
-(352, 224), #esquerda
-(352, 480), #desce
+(0, 224),
+(480, 224),
+(480, 96),
+(352, 96),    
+(352, 480),
 (224, 480),
 (224, 352),
 (928, 352),
 (928, 160),
 (1120, 160),
-(1120, 662)  # vai para direita (saída)
+(1120, 704)  
 ]
 
 
@@ -38,7 +36,8 @@ torretas = pygame.sprite.Group()
 screen = pygame.display.set_mode((1280, 704))
 clock = pygame.time.Clock()
 mapa = pygame.image.load("map3.png").convert_alpha()
-
+#desenha o caminho inimigos
+pygame.draw.lines(mapa, (0, 0, 0), False, PATH, 5)
 
 map_path = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
             [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
