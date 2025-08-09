@@ -67,7 +67,4 @@ while running:
             enemies.remove(enemy)
     pygame.display.flip()
     clock.tick(60)
-
-
-
 pygame.quit()
