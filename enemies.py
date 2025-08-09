@@ -86,6 +86,7 @@ pygame.init()
 torretas = pygame.sprite.Group()
 
 screen = pygame.display.set_mode((1280, 704))
+
 clock = pygame.time.Clock()
 
 
@@ -97,6 +98,8 @@ enemies = [
     supertank(PATH),
 ]
 
+map_image = pygame.image.load("map3.png").convert_alpha()
+
 running = True
 while running:
     for event in pygame.event.get():
@@ -107,8 +110,8 @@ while running:
             create_tower(x, y)
     
     #torretas.update(inimigos)
-
-    screen.fill((30, 30, 30))
+    screen.fill((0, 0, 0))  # Limpa a tela
+    screen.blit(map_image, (0, 0))
 
     for t in torretas:
         t.draw(screen)
