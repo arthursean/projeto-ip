@@ -8,7 +8,9 @@ def create_tower(x, y):
                 if(grid_x == t.tile[0] and grid_y == t.tile[1]):
                     flag = True
                     break
-                    break
+            if(map_path[grid_y][grid_x] == 1):
+                flag = True
+                print("Isso é um caminho")
             if(not flag):
                 print(f"Torre criada em ({x},{y}) nos blocos {grid_x} e {grid_y}")
                 torretas.add(torre.Torre((grid_x, grid_y)))
@@ -36,6 +38,19 @@ torretas = pygame.sprite.Group()
 screen = pygame.display.set_mode((1280, 704))
 clock = pygame.time.Clock()
 mapa = pygame.image.load("map3.png").convert_alpha()
+
+
+map_path = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+            [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]]
 
 
 #Lista de inimigos -> comentario!!!!!!
