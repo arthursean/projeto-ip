@@ -110,6 +110,8 @@ while running:
         placing_torres = True
         #se estiver colocando torres, aparece o botão de cancelar
     if placing_torres:
+        #mostrar a torre na tela
+        cursor_rect = torretas.get_rect()
         if cancel_button_sprite.draw(screen):
             placing_torres = False
 
