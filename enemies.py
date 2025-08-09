@@ -43,7 +43,6 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         if self.vida<=0:
             print("morreu")
             self.vivo = False
-
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 class rapido(inimigo):
