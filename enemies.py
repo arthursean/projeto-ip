@@ -41,6 +41,10 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
     def dano (self, dmg):
         self.vida-=dmg
         if self.vida<=0:
+<<<<<<< HEAD
+            print("morreu")
+=======
+>>>>>>> teste_imp
             self.vivo = False
 
     def draw(self, screen):
@@ -58,6 +62,8 @@ class tank(inimigo):
 class supertank(inimigo):
     def __init__(self, path):
         super().__init__(path, velocidade=0.5, vida=400, img_path="pixilart-drawing (4).png")
+<<<<<<< HEAD
+=======
 
 def create_tower(x, y):
             grid_x, grid_y = x//64, y//64
@@ -125,3 +131,4 @@ while running:
 
 
 pygame.quit()
+>>>>>>> teste_imp
