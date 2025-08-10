@@ -40,11 +40,11 @@ clock = pygame.time.Clock()
 #variáveis de jogo
 placing_torres = False
 
-    
+
+#Renderiza as quantidades de coletáveis coletados
+
 #carrega imagens
-forca = pygame.image.load("projeto-ip/forca_imagem.gif")
-distancia = pygame.image.load("projeto-ip/arco_e_flecha.gif")
-cooldown = pygame.image.load("projeto-ip/Bota_velocidade.gif")
+
 exercito = pygame.image.load(c.exercito_img).convert_alpha()
 heart = pygame.image.load(c.heart_img).convert_alpha()
 heart = pygame.transform.scale_by(heart, 2)
@@ -85,9 +85,7 @@ while running:
     screen.blit(tela_vida, (50, 50))
     screen.blit(dinheiro, (10, 105))
     screen.blit(tela_dinheiro, (50, 105))
-    screen.blit(forca, (950, 590))
-    screen.blit(distancia, (1000, 600))
-    screen.blit(cooldown, (1050, 600)) 
+
     #desenha o botão de compra
     if buy_button_sprite.draw(screen):
         placing_torres = True
@@ -123,7 +121,7 @@ while running:
                 money += 10
             enemies.remove(enemy)
             if enemy.vida <= 0:
-                 if random.random() < 0.9:
+                 if random.random() < 0.9:#Chance de spawnar o Upgrade
                     nome = random.choice(list(COLETAVEIS.keys()))
                     imagem = COLETAVEIS[nome]
                     coletavel = Coletavel(enemy.x, enemy.y, imagem)
