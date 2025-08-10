@@ -33,7 +33,7 @@ torretas = pygame.sprite.Group()
 coletaveis = pygame.sprite.Group()
 screen = pygame.display.set_mode((1280, 704))
 clock = pygame.time.Clock()
-mapa = pygame.image.load("projeto-ip/map3.png").convert_alpha()
+mapa = pygame.image.load("map3.png").convert_alpha()
 
 
 #Lista de inimigos -> comentario!!!!!!
