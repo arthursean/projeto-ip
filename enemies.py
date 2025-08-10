@@ -5,7 +5,7 @@ import torre
 class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cada tipo
 
 
-    def __init__(self, path, vida, velocidade, img_path):
+    def __init__(self, path, vida, velocidade, img_path, dmg):
         super().__init__()
         self.path = path
         self.path_index = 0
@@ -17,6 +17,7 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         self.vivo = True
         self.eliminado = False
+        self.dmg = dmg
     def movimentação(self, vida):
         # Se não chegou ao final do caminho
         if self.path_index < len(self.path) - 1:
@@ -40,7 +41,7 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         else:
             print("Saiu vivo")
             self.vivo = False
-            return vida - 50
+            return vida - self.dmg
 
     def dano (self, dmg):
         self.vida-=dmg
@@ -52,12 +53,12 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         screen.blit(self.image, self.rect)
 class rapido(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=4, vida=50, img_path="imagens/pixilart-drawing (4).png")
+        super().__init__(path, velocidade=4, vida=50, img_path="imagens/pixilart-drawing (4).png", dmg = 50)
 
 class tank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=2, vida=200, img_path="imagens/pixilart-drawing (4).png")
+        super().__init__(path, velocidade=2, vida=200, img_path="imagens/pixilart-drawing (4).png", dmg = 25)
 
 class supertank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=0.5, vida=400, img_path="imagens/pixilart-drawing (4).png")
+        super().__init__(path, velocidade=0.5, vida=400, img_path="imagens/pixilart-drawing (4).png", dmg = 100)

@@ -65,8 +65,6 @@ buy_button = pygame.transform.scale_by(buy_button, 4)
 cancel_button = pygame.image.load("imagens/pixil-frame-0 (2).png").convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
 
-#desenha o caminho inimigos
-pygame.draw.lines(mapa, (0, 0, 0), False, PATH, 5)
 
 map_path = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
