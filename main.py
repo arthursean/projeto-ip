@@ -168,8 +168,8 @@ while running:
                 if enemy.vida <= 0:
                     if random.random() < 0.9:#Chance de spawnar o Upgrade
                         nome = random.choice(list(COLETAVEIS.keys()))
-                        if nome == "velocidade":
-                            qtd_cooldown +=1
+                        if nome == "velocidade":#Contando a quantidade de coletáveis conforme o
+                            qtd_cooldown +=1    #drop, o ideal é contar conforme o click no coletável(pode ser ajustado ainda)
                         elif nome == "força":
                             qtd_forca += 1
                         else:
@@ -183,7 +183,8 @@ while running:
         tela_forca = font.render(f'{qtd_forca}',True,(255,255,255) )
         tela_cooldown = font.render(f'{qtd_cooldown}', True, (255,255,255))
         tela_distancia = font.render(f'{qtd_distancia}', True,(255,255,255))
-
+        
+        #Colocando na tela as variáves que mudam conforme são recebidas
         screen.blit(tela_vida, (50, 50))
         screen.blit(tela_dinheiro, (50, 105))
         screen.blit(tela_forca,(900,580))
