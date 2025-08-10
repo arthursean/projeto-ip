@@ -13,9 +13,10 @@ placebleTiles = levelData.placebleTiles
 exercito_img = "imagens/teste.png"
 heart_img = "imagens/heart.png"
 dinheiro_img = "imagens/moeda.png"
-buy_button_img = "imagens/pixil-frame-0 (1).png"
-cancel_button_img = "imagens/pixil-frame-0 (2).png"
-end_button_img = "imagens\pixil-frame-0 (3).png"
+buy_button_img = "imagens/comprar.png"
+cancel_button_img = "imagens/cancelar.png"
+end_button_img = "imagens/sair.png"
+selling_button_img = "imagens/vender.png"
 
 
 mapa_img = levelData.backgroundPath

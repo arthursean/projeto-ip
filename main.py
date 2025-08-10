@@ -8,26 +8,32 @@ from coletaveis import COLETAVEIS
 from coletaveis import Coletavel
 
 def create_tower(x, y, money):
-            grid_x, grid_y = x//c.tileSize, y//c.tileSize
-            flag = False
-            if grid_x > c.mapWidth - 1:
+            if grid_x > c.mapWidth - 2:
                 print("fora dos limites")
                 return money
             for t in torretas:
                 if(grid_x == t.tile[0] and grid_y == t.tile[1]):
-                    flag = True
                     print("Já tem uma torreta aqui")
                     return money
             if(map_path[grid_y][grid_x] == 1):
                 flag = True
                 print("Isso é um caminho")
                 return money
-            if(not flag):
-                print(f"Torre criada em ({x},{y}) nos blocos {grid_x} e {grid_y}")
-                torretas.add(torre.Torre((grid_x, grid_y)))
-                return money - 10
+            print(f"Torre criada nos blocos {grid_x} e {grid_y}")
+            torretas.add(torre.Torre((grid_x, grid_y)))
+            return money - 10
 
-
+def sell_tower(x, y, money):
+    if grid_x > c.mapWidth - 2:
+        print("fora dos limites")
+        return money
+    for t in torretas:
+        if(grid_x == t.tile[0] and grid_y == t.tile[1]):
+            torretas.remove(t)
+            print(f"Torreta do bloco ({x}, {y}) vendida")
+            return money + 5
+    print("Não existe torreta aqui")
+    return money
 PATH = c.path
 pygame.init()
 torretas = pygame.sprite.Group()
@@ -39,6 +45,7 @@ clock = pygame.time.Clock()
 
 #variáveis de jogo
 placing_torres = False
+selling_torres = False
 
 
 #Renderiza as quantidades de coletáveis coletados
@@ -57,6 +64,8 @@ cancel_button = pygame.image.load(c.cancel_button_img).convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
 end_button = pygame.image.load(c.end_button_img).convert_alpha()
 end_button = pygame.transform.scale_by(end_button, 4)
+selling_button = pygame.image.load(c.selling_button_img).convert_alpha()
+selling_button = pygame.transform.scale_by(selling_button, 2)
 
 map_path = c.placebleTiles
 
@@ -72,8 +81,9 @@ vida = 100
 cur_enemies = []
 #cria o botão de compra
 buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
-cancel_button_sprite = button.Button(c.screen_width - 166, 100, cancel_button, True)
+cancel_button_sprite = button.Button(c.screen_width - 166, 130, cancel_button, True)
 end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
+selling_button_sprite = button.Button(c.screen_width - 160, 60, selling_button,True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) # Example: Arial font, size 30
@@ -99,6 +109,7 @@ while running:
         #desenha o botão de compra
         if buy_button_sprite.draw(screen):
             placing_torres = True
+            selling_torres = False
             #se estiver colocando torres, aparece o botão de cancelar
         if placing_torres:
             #mostrar a torre na tela
@@ -109,19 +120,31 @@ while running:
                 screen.blit(exercito, cursor_rect)
             if cancel_button_sprite.draw(screen):
                 placing_torres = False
-
+        if selling_button_sprite.draw(screen):
+            print("estou aqui")
+            selling_torres = True
+            placing_torres = False
+        if selling_torres:
+            if cancel_button_sprite.draw(screen):
+                selling_torres = False
         #SEÇÃO DE EVENTOS
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                grid_x, grid_y = x//c.tileSize, y//c.tileSize
                 if placing_torres and money >= 10:
-                    x, y = pygame.mouse.get_pos()
-                    money = create_tower(x, y, money)
-                else:
+                    money = create_tower(grid_x, grid_y, money)
+                elif selling_torres:
                     x, y = pygame.mouse.get_pos()
                     grid_x, grid_y = x//c.tileSize, y//c.tileSize
-                    if grid_x <= c.mapWidth - 1:
+                    money = sell_tower(grid_x, grid_y, money)
+                elif grid_x > c.mapWidth - 2:
+                    for t in torretas:
+                        t.selecionado = False
+                else:
+                    if grid_x <= c.mapWidth - 2:
                         for t in torretas:
                             if(grid_x == t.tile[0] and grid_y == t.tile[1]):
                                 t.selecionado = True
