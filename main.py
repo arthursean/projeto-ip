@@ -57,6 +57,8 @@ cancel_button = pygame.image.load(c.cancel_button_img).convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
 end_button = pygame.image.load(c.end_button_img).convert_alpha()
 end_button = pygame.transform.scale_by(end_button, 4)
+play_button = pygame.image.load(c.play_button_img).convert_alpha()
+play_button = pygame.transform.scale_by(play_button, 4)
 
 map_path = c.placebleTiles
 
@@ -74,6 +76,7 @@ cur_enemies = []
 buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 166, 100, cancel_button, True)
 end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
+play_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, play_button, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) # Example: Arial font, size 30
@@ -85,11 +88,24 @@ next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
 frame_count = 0
 end_con = ""
-end = False
+state = "title_screen" 
 
 while running:
+    if state == "title_screen":
+        rect_w = 400
+        rect_h = 300
+        start_rect = pygame.Rect((c.screen_width-rect_w)//2, (c.screen_height-rect_h)//2, rect_w, rect_h)
 
-    if not end:
+        pygame.draw.rect(screen, (255, 0, 0), start_rect)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        if play_button_sprite.draw(screen):
+            state = "game_screen"
+
+        pygame.display.flip()
+    elif state == "game_screen":
         #SEÇÃO DE DESENHO
         screen.fill((128,128,128))
         screen.blit(mapa, (0,0))
@@ -150,8 +166,8 @@ while running:
                         coletavel = Coletavel(enemy.x, enemy.y, imagem)
                         coletaveis.add(coletavel)
 
-        tela_vida = font.render(f'{vida}', True, (255, 255, 255)) 
-        tela_dinheiro = font.render(f'{money}', True, (255, 255, 255))
+        tela_vida = font.render(f'{max(vida, 0)}', True, (255, 255, 255)) 
+        tela_dinheiro = font.render(f'{max(money, 0)}', True, (255, 255, 255))
         
         screen.blit(tela_vida, (50, 50))
         screen.blit(tela_dinheiro, (50, 105))
@@ -159,15 +175,15 @@ while running:
         coletaveis.draw(screen)
         pygame.display.flip()
         if(vida <= 0):
-            end = True
+            state = "end_screen"
             end_con = "Loser"
         elif(len(remaining_times)==0 and not cur_enemies):
-            end = True
+            state = "end_screen"
             end_con = "Você ganhou o jogo!"
 
         frame_count += 1
 
-    else:
+    elif state == "end_screen":
         
         end_w = 400
         end_h = 300
