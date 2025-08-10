@@ -61,17 +61,26 @@ map_path = c.placebleTiles
 #Lista de inimigos -> comentario!!!!!!
 money = 100
 vida = 100
-enemies = [
+'''cur_enemies = [
     enemies.rapido(PATH),
     enemies.tank(PATH),
     enemies.supertank(PATH),
-]
+]'''
+
+cur_enemies = []
 #cria o botão de compra
 buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 166, 100, cancel_button, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) # Example: Arial font, size 30
+
+timeline = c.enemySpawnTimes
+remaining_times = list(timeline.keys())
+
+next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
+
+frame_count = 0
 
 while running:
 
@@ -111,15 +120,28 @@ while running:
     
     
     for t in torretas:
-        t.update(enemies)
+        t.update(cur_enemies)
         t.draw(screen)
-    for enemy in enemies:
+
+    if frame_count == next_spawn:
+        for en in timeline[next_spawn]:
+            if en == "rapido":
+                cur_enemies.append(enemies.rapido(PATH))
+            elif en == "supertank":
+                cur_enemies.append(enemies.supertank(PATH))
+            elif en == "tank":
+                cur_enemies.append(enemies.tank(PATH))
+        
+        remaining_times.pop(0)
+        next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
+
+    for enemy in cur_enemies:
         vida = enemy.movimentação(vida)
         enemy.draw(screen)
         if not enemy.vivo:
             if enemy.eliminado:
                 money += 10
-            enemies.remove(enemy)
+            cur_enemies.remove(enemy)
             if enemy.vida <= 0:
                  if random.random() < 0.9:#Chance de spawnar o Upgrade
                     nome = random.choice(list(COLETAVEIS.keys()))
@@ -131,8 +153,11 @@ while running:
     if(vida <= 0):
         running = False
         print("Loser")
-    elif(not enemies):
+    elif(len(remaining_times)==0 and not cur_enemies):
         running = False
         print("Você ganhou o jogo!")
+
+    frame_count += 1
+    print(frame_count/60)
     clock.tick(c.clk)
 pygame.quit()

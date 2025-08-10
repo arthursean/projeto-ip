@@ -21,3 +21,5 @@ mapa_img = levelData.backgroundPath
 mapHeight = levelData.mapHeight
 mapWidth = levelData.mapWidth
 tileSize = levelData.tileSize
+
+enemySpawnTimes = levelData.enemySpawnTimes
