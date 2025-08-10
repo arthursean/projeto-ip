@@ -16,6 +16,7 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         self.image = pygame.image.load(img_path)
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         self.vivo = True
+        self.eliminado = False
     def movimentação(self, vida):
         # Se não chegou ao final do caminho
         if self.path_index < len(self.path) - 1:
@@ -46,6 +47,7 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         if self.vida<=0:
             print("morreu")
             self.vivo = False
+            self.eliminado = True
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 class rapido(inimigo):

@@ -138,7 +138,8 @@ while running:
         vida = enemy.movimentação(vida)
         enemy.draw(screen)
         if not enemy.vivo:
-            money += 10
+            if enemy.eliminado:
+                money += 10
             enemies.remove(enemy)
     pygame.display.flip()
     if(vida <= 0):
