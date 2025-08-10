@@ -16,6 +16,7 @@ class Torre(pygame.sprite.Sprite):
         self.som = pygame.mixer.Sound('som_tiro.mp3')
     def draw(self, screen):
         self.img = pygame.image.load(self.path)
+        self.img = pygame.transform.scale_by(self.img, 1.1)
         self.img_location = self.img.get_rect()
         self.img_location.center = self.location
         screen.blit(self.img, self.img_location)
