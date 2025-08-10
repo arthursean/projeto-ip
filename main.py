@@ -13,7 +13,8 @@ def create_tower(x, y, money):
             for t in torretas:
                 if(grid_x == t.tile[0] and grid_y == t.tile[1]):
                     flag = True
-                    break
+                    print("Já tem uma torreta aqui")
+                    return money
             if(map_path[grid_y][grid_x] == 1):
                 flag = True
                 print("Isso é um caminho")
