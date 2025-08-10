@@ -39,12 +39,16 @@ clock = pygame.time.Clock()
 
 #variáveis de jogo
 placing_torres = False
-
+qtd_forca = 0
+qtd_distancia = 0
+qtd_cooldown = 0
 
 #Renderiza as quantidades de coletáveis coletados
 
 #carrega imagens
-
+forca = pygame.image.load(c.forca_img)
+distancia = pygame.image.load(c.distancia_img)
+cooldown = pygame.image.load(c.cooldown_img)
 exercito = pygame.image.load(c.exercito_img).convert_alpha()
 heart = pygame.image.load(c.heart_img).convert_alpha()
 heart = pygame.transform.scale_by(heart, 2)
@@ -111,7 +115,9 @@ while running:
         screen.blit(mapa, (0,0))
         screen.blit(heart, (-30, 35))
         screen.blit(dinheiro, (10, 105))
-
+        screen.blit(forca, (900, 590))
+        screen.blit(distancia, (975, 600))
+        screen.blit(cooldown, (1050, 600)) 
         #desenha o botão de compra
         if buy_button_sprite.draw(screen):
             placing_torres = True
@@ -162,15 +168,27 @@ while running:
                 if enemy.vida <= 0:
                     if random.random() < 0.9:#Chance de spawnar o Upgrade
                         nome = random.choice(list(COLETAVEIS.keys()))
+                        if nome == "velocidade":
+                            qtd_cooldown +=1
+                        elif nome == "força":
+                            qtd_forca += 1
+                        else:
+                            qtd_distancia += 1
                         imagem = COLETAVEIS[nome]
                         coletavel = Coletavel(enemy.x, enemy.y, imagem)
                         coletaveis.add(coletavel)
 
         tela_vida = font.render(f'{max(vida, 0)}', True, (255, 255, 255)) 
         tela_dinheiro = font.render(f'{max(money, 0)}', True, (255, 255, 255))
-        
+        tela_forca = font.render(f'{qtd_forca}',True,(255,255,255) )
+        tela_cooldown = font.render(f'{qtd_cooldown}', True, (255,255,255))
+        tela_distancia = font.render(f'{qtd_distancia}', True,(255,255,255))
+
         screen.blit(tela_vida, (50, 50))
         screen.blit(tela_dinheiro, (50, 105))
+        screen.blit(tela_forca,(900,580))
+        screen.blit(tela_cooldown,(1050, 580))
+        screen.blit(tela_distancia,(975, 580))
 
         coletaveis.draw(screen)
         pygame.display.flip()

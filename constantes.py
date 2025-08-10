@@ -17,7 +17,9 @@ buy_button_img = "imagens/pixil-frame-0 (1).png"
 cancel_button_img = "imagens/pixil-frame-0 (2).png"
 end_button_img = "imagens\pixil-frame-0 (3).png"
 play_button_img = "imagens\pixil-frame-0 (4).png" 
-
+forca_img = "forca_imagem.gif"
+distancia_img = "arco_e_flecha.gif"
+cooldown_img = "Bota_velocidade.gif"
 mapa_img = levelData.backgroundPath
 
 mapHeight = levelData.mapHeight
