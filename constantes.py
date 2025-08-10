@@ -15,6 +15,8 @@ heart_img = "imagens/heart.png"
 dinheiro_img = "imagens/moeda.png"
 buy_button_img = "imagens/pixil-frame-0 (1).png"
 cancel_button_img = "imagens/pixil-frame-0 (2).png"
+end_button_img = "imagens\pixil-frame-0 (3).png"
+
 
 mapa_img = levelData.backgroundPath
 

@@ -55,6 +55,8 @@ buy_button = pygame.image.load(c.buy_button_img).convert_alpha()
 buy_button = pygame.transform.scale_by(buy_button, 4)
 cancel_button = pygame.image.load(c.cancel_button_img).convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
+end_button = pygame.image.load(c.end_button_img).convert_alpha()
+end_button = pygame.transform.scale_by(end_button, 4)
 
 map_path = c.placebleTiles
 
@@ -71,6 +73,7 @@ cur_enemies = []
 #cria o botão de compra
 buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 166, 100, cancel_button, True)
+end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) # Example: Arial font, size 30
@@ -81,83 +84,109 @@ remaining_times = list(timeline.keys())
 next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
 frame_count = 0
+end_con = ""
+end = False
 
 while running:
 
+    if not end:
+        #SEÇÃO DE DESENHO
+        screen.fill((128,128,128))
+        screen.blit(mapa, (0,0))
+        screen.blit(heart, (-30, 35))
+        screen.blit(dinheiro, (10, 105))
 
-    #SEÇÃO DE DESENHO
-    screen.fill((128,128,128))
-    screen.blit(mapa, (0,0))
-    tela_vida = font.render(f'{vida}', True, (255, 255, 255)) 
-    tela_dinheiro = font.render(f'{money}', True, (255, 255, 255))
-    screen.blit(heart, (-30, 35))
-    screen.blit(tela_vida, (50, 50))
-    screen.blit(dinheiro, (10, 105))
-    screen.blit(tela_dinheiro, (50, 105))
+        #desenha o botão de compra
+        if buy_button_sprite.draw(screen):
+            placing_torres = True
+            #se estiver colocando torres, aparece o botão de cancelar
+        if placing_torres:
+            #mostrar a torre na tela
+            cursor_rect = exercito.get_rect()
+            cursor_pos = pygame.mouse.get_pos()
+            cursor_rect.center = cursor_pos
+            if cursor_pos[0] <= 890:
+                screen.blit(exercito, cursor_rect)
+            if cancel_button_sprite.draw(screen):
+                placing_torres = False
 
-    #desenha o botão de compra
-    if buy_button_sprite.draw(screen):
-        placing_torres = True
-        #se estiver colocando torres, aparece o botão de cancelar
-    if placing_torres:
-        #mostrar a torre na tela
-        cursor_rect = exercito.get_rect()
-        cursor_pos = pygame.mouse.get_pos()
-        cursor_rect.center = cursor_pos
-        if cursor_pos[0] <= 890:
-            screen.blit(exercito, cursor_rect)
-        if cancel_button_sprite.draw(screen):
-            placing_torres = False
-
-    #SEÇÃO DE EVENTOS
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if placing_torres and money >= 10:
-                x, y = pygame.mouse.get_pos()
-                money = create_tower(x, y, money)
-    
-    
-    for t in torretas:
-        t.update(cur_enemies)
-        t.draw(screen)
-
-    if frame_count == next_spawn:
-        for en in timeline[next_spawn]:
-            if en == "rapido":
-                cur_enemies.append(enemies.rapido(PATH))
-            elif en == "supertank":
-                cur_enemies.append(enemies.supertank(PATH))
-            elif en == "tank":
-                cur_enemies.append(enemies.tank(PATH))
+        #SEÇÃO DE EVENTOS
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if placing_torres and money >= 10:
+                    x, y = pygame.mouse.get_pos()
+                    money = create_tower(x, y, money)
         
-        remaining_times.pop(0)
-        next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
+        
+        for t in torretas:
+            t.update(cur_enemies)
+            t.draw(screen)
 
-    for enemy in cur_enemies:
-        vida = enemy.movimentação(vida)
-        enemy.draw(screen)
-        if not enemy.vivo:
-            if enemy.eliminado:
-                money += 10
-            cur_enemies.remove(enemy)
-            if enemy.vida <= 0:
-                 if random.random() < 0.9:#Chance de spawnar o Upgrade
-                    nome = random.choice(list(COLETAVEIS.keys()))
-                    imagem = COLETAVEIS[nome]
-                    coletavel = Coletavel(enemy.x, enemy.y, imagem)
-                    coletaveis.add(coletavel)
-    coletaveis.draw(screen)
-    pygame.display.flip()
-    if(vida <= 0):
-        running = False
-        print("Loser")
-    elif(len(remaining_times)==0 and not cur_enemies):
-        running = False
-        print("Você ganhou o jogo!")
+        if frame_count == next_spawn:
+            for en in timeline[next_spawn]:
+                if en == "rapido":
+                    cur_enemies.append(enemies.rapido(PATH))
+                elif en == "supertank":
+                    cur_enemies.append(enemies.supertank(PATH))
+                elif en == "tank":
+                    cur_enemies.append(enemies.tank(PATH))
+            
+            remaining_times.pop(0)
+            next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
-    frame_count += 1
-    print(frame_count/60)
+        for enemy in cur_enemies:
+            vida = enemy.movimentação(vida)
+            enemy.draw(screen)
+            if not enemy.vivo:
+                if enemy.eliminado:
+                    money += 10
+                cur_enemies.remove(enemy)
+                if enemy.vida <= 0:
+                    if random.random() < 0.9:#Chance de spawnar o Upgrade
+                        nome = random.choice(list(COLETAVEIS.keys()))
+                        imagem = COLETAVEIS[nome]
+                        coletavel = Coletavel(enemy.x, enemy.y, imagem)
+                        coletaveis.add(coletavel)
+
+        tela_vida = font.render(f'{vida}', True, (255, 255, 255)) 
+        tela_dinheiro = font.render(f'{money}', True, (255, 255, 255))
+        
+        screen.blit(tela_vida, (50, 50))
+        screen.blit(tela_dinheiro, (50, 105))
+
+        coletaveis.draw(screen)
+        pygame.display.flip()
+        if(vida <= 0):
+            end = True
+            end_con = "Loser"
+        elif(len(remaining_times)==0 and not cur_enemies):
+            end = True
+            end_con = "Você ganhou o jogo!"
+
+        frame_count += 1
+
+    else:
+        
+        end_w = 400
+        end_h = 300
+        end_rect = pygame.Rect((c.screen_width-end_w)//2, (c.screen_height-end_h)//2, end_w, end_h)
+
+        pygame.draw.rect(screen, (255, 0, 0), end_rect)
+        tela_end = font.render(f'{end_con}', True, (255, 255, 255))
+
+        screen.blit(tela_end, ((c.screen_width-end_w)//2, (c.screen_height-end_h)//2))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        if end_button_sprite.draw(screen):
+            running = False
+
+        pygame.display.flip()
+    #print(frame_count/60)
     clock.tick(c.clk)
+
 pygame.quit()
