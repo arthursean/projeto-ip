@@ -130,8 +130,7 @@ while running:
         screen.blit(distancia, (975, 600))
         screen.blit(cooldown, (1050, 600)) 
         #desenha o botão de compra
-        if torre_marcada is None:
-            if buy_button_sprite.draw(screen):
+        if buy_button_sprite.draw(screen):
                 placing_torres = True
             #se estiver colocando torres, aparece o botão de cancelar
         if placing_torres:
@@ -143,23 +142,23 @@ while running:
                 screen.blit(exercito, cursor_rect)
             if cancel_button_sprite.draw(screen):
                 placing_torres = False
-
         if torre_marcada:
-            if selling_button_sprite.draw(screen):
-                torretas.remove(torre_marcada)
-                money += 5
-                torre_marcada = None
-
+            selling_button_sprite.draw(screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 grid_x, grid_y = x//c.tileSize, y//c.tileSize
-                if placing_torres and money >= 10:
-                    money = create_tower(grid_x, grid_y, money)
+                if torre_marcada and selling_button_sprite.draw(screen):
+                        torretas.remove(torre_marcada)
+                        money += 5
+                        torre_marcada = None
                 else:
-                    torre_marcada = sel_torres(grid_x, grid_y, torre_marcada)
+                    if placing_torres and money >= 10:
+                        money = create_tower(grid_x, grid_y, money)
+                    else:
+                        torre_marcada = sel_torres(grid_x, grid_y, torre_marcada)
         for t in torretas:
             t.update(cur_enemies)
             t.draw(screen)
