@@ -6,10 +6,11 @@ import button
 import constantes as c
 from coletaveis import COLETAVEIS
 from coletaveis import Coletavel
+
 def create_tower(x, y, money):
-            grid_x, grid_y = x//64, y//64
+            grid_x, grid_y = x//c.tileSize, y//c.tileSize
             flag = False
-            if grid_x > 13:
+            if grid_x > c.mapWidth - 1:
                 print("fora dos limites")
                 return money
             for t in torretas:
@@ -25,22 +26,9 @@ def create_tower(x, y, money):
                 print(f"Torre criada em ({x},{y}) nos blocos {grid_x} e {grid_y}")
                 torretas.add(torre.Torre((grid_x, grid_y)))
                 return money - 10
-#pra rodar no pygame so tirar o # desse trecho aq embaixo
-PATH = [
-    (0, 224),   # entrada (primeiro tile à esquerda, centro)
-    (416, 224),
-    (416, 96),
-    (288, 96),  # segue para a direita
-    (288, 480),
-    (160, 480),
-    (160, 352),  # vira para baixo (loop esquerdo)
-    (608, 352),  # segue para a direita (trecho central)
-    (608, 96),   # sobe (trecho direito superior)
-    (736, 96),   # vira para a direita
-    (736, 544),  # desce grande trecho (trecho direito inferior)
-    (480, 544),  # volta à esquerda (curva para baixo)
-    (480, 704),  # saída (último tile, centro)
-]
+
+
+PATH = c.path
 pygame.init()
 torretas = pygame.sprite.Group()
 
@@ -52,34 +40,23 @@ clock = pygame.time.Clock()
 #variáveis de jogo
 placing_torres = False
 
-
+    
 #carrega imagens
-exercito = pygame.image.load("imagens/teste.png").convert_alpha()
-heart = pygame.image.load("imagens/heart.png").convert_alpha()
+forca = pygame.image.load("projeto-ip/forca_imagem.gif")
+distancia = pygame.image.load("projeto-ip/arco_e_flecha.gif")
+cooldown = pygame.image.load("projeto-ip/Bota_velocidade.gif")
+exercito = pygame.image.load(c.exercito_img).convert_alpha()
+heart = pygame.image.load(c.heart_img).convert_alpha()
 heart = pygame.transform.scale_by(heart, 2)
-dinheiro = pygame.image.load("imagens/moeda.png").convert_alpha()
+dinheiro = pygame.image.load(c.dinheiro_img).convert_alpha()
 dinheiro = pygame.transform.scale_by(dinheiro, 2)
-mapa = pygame.image.load("imagens/map3.png").convert_alpha()
-buy_button = pygame.image.load("imagens/pixil-frame-0 (1).png").convert_alpha()
+mapa = pygame.image.load(c.mapa_img).convert_alpha()
+buy_button = pygame.image.load(c.buy_button_img).convert_alpha()
 buy_button = pygame.transform.scale_by(buy_button, 4)
-cancel_button = pygame.image.load("imagens/pixil-frame-0 (2).png").convert_alpha()
+cancel_button = pygame.image.load(c.cancel_button_img).convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
 
-
-map_path = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0],
-    [1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0],
-    [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
-]
-
+map_path = c.placebleTiles
 
 #Lista de inimigos -> comentario!!!!!!
 money = 100
@@ -108,6 +85,9 @@ while running:
     screen.blit(tela_vida, (50, 50))
     screen.blit(dinheiro, (10, 105))
     screen.blit(tela_dinheiro, (50, 105))
+    screen.blit(forca, (950, 590))
+    screen.blit(distancia, (1000, 600))
+    screen.blit(cooldown, (1050, 600)) 
     #desenha o botão de compra
     if buy_button_sprite.draw(screen):
         placing_torres = True

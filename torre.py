@@ -1,13 +1,14 @@
 import pygame
 import math
 from dados_torreta import DADOS
+import constantes as c
 
 class Torre(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
         self.path = "imagens/teste.png"
         self.tile = pos
-        self.location = ((pos[0] + 0.5) * 64, (pos[1] + 0.5) * 64)
+        self.location = ((pos[0] + 0.5) * c.tileSize, (pos[1] + 0.5) * c.tileSize)
         self.range = DADOS['range']
         self.dano = DADOS['dmg']
         self.cd = DADOS['cooldown']
