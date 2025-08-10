@@ -34,5 +34,10 @@ class Torre(pygame.sprite.Sprite):
     def update(self, inimigos):
         if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd:
                 self.atacar(inimigos)
-    
+    def upgrade_range(self):
+        self.range = (self.range * 2)
+    def upgrade_dano(self):
+        self.dano = (self.dano * 1.5)
+    def upgrade_velocidade(self):
+        self.cd = (self.cd * 0.5)    
 

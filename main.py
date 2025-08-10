@@ -137,9 +137,29 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if placing_torres and money >= 10:
-                    x, y = pygame.mouse.get_pos()
-                    money = create_tower(x, y, money)
+                x, y = pygame.mouse.get_pos()
+            if placing_torres and money >= 10:
+                money = create_tower(x, y, money)
+            # Verifica se clicou em algum coletável (upgrade)
+            coletavel_clicado = None
+            for colect in coletaveis:
+                if colect.rect.collidepoint(x, y):
+                    coletavel_clicado = colect
+                    break
+            if coletavel_clicado:
+                if coletavel_clicado.nome == 'velocidade':
+                    for t in torretas:
+                        t.upgrade_velocidade()
+                    print("Velocidade aumentada")
+                elif coletavel_clicado.nome == 'força':
+                    for t in torretas:
+                        t.upgrade_dano()
+                    print("Dano aumentado")
+                elif coletavel_clicado.nome == 'distancia':
+                    for t in torretas:
+                        t.upgrade_range()
+                    print("Alcance aumentado")
+                coletaveis.remove(coletavel_clicado)
         
         
         for t in torretas:
@@ -175,7 +195,7 @@ while running:
                         else:
                             qtd_distancia += 1
                         imagem = COLETAVEIS[nome]
-                        coletavel = Coletavel(enemy.x, enemy.y, imagem)
+                        coletavel = Coletavel(enemy.x, enemy.y, imagem, nome)
                         coletaveis.add(coletavel)
 
         tela_vida = font.render(f'{max(vida, 0)}', True, (255, 255, 255)) 
