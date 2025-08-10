@@ -47,11 +47,16 @@ clock = pygame.time.Clock()
 placing_torres = False
 selling_torres = False
 
+qtd_forca = 0
+qtd_distancia = 0
+qtd_cooldown = 0
 
 #Renderiza as quantidades de coletáveis coletados
 
 #carrega imagens
-
+forca = pygame.image.load(c.forca_img)
+distancia = pygame.image.load(c.distancia_img)
+cooldown = pygame.image.load(c.cooldown_img)
 exercito = pygame.image.load(c.exercito_img).convert_alpha()
 heart = pygame.image.load(c.heart_img).convert_alpha()
 heart = pygame.transform.scale_by(heart, 2)
@@ -64,6 +69,8 @@ cancel_button = pygame.image.load(c.cancel_button_img).convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
 end_button = pygame.image.load(c.end_button_img).convert_alpha()
 end_button = pygame.transform.scale_by(end_button, 4)
+play_button = pygame.image.load(c.play_button_img).convert_alpha()
+play_button = pygame.transform.scale_by(play_button, 4)
 selling_button = pygame.image.load(c.selling_button_img).convert_alpha()
 selling_button = pygame.transform.scale_by(selling_button, 2)
 
@@ -83,6 +90,7 @@ cur_enemies = []
 buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 166, 130, cancel_button, True)
 end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
+play_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, play_button, True)
 selling_button_sprite = button.Button(c.screen_width - 160, 60, selling_button,True)
 running = True
 pygame.font.init()
@@ -95,17 +103,32 @@ next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
 frame_count = 0
 end_con = ""
-end = False
+state = "title_screen" 
 
 while running:
+    if state == "title_screen":
+        rect_w = 400
+        rect_h = 300
+        start_rect = pygame.Rect((c.screen_width-rect_w)//2, (c.screen_height-rect_h)//2, rect_w, rect_h)
 
-    if not end:
+        pygame.draw.rect(screen, (255, 0, 0), start_rect)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        if play_button_sprite.draw(screen):
+            state = "game_screen"
+
+        pygame.display.flip()
+    elif state == "game_screen":
         #SEÇÃO DE DESENHO
         screen.fill((128,128,128))
         screen.blit(mapa, (0,0))
         screen.blit(heart, (-30, 35))
         screen.blit(dinheiro, (10, 105))
-
+        screen.blit(forca, (900, 590))
+        screen.blit(distancia, (975, 600))
+        screen.blit(cooldown, (1050, 600)) 
         #desenha o botão de compra
         if buy_button_sprite.draw(screen):
             placing_torres = True
@@ -176,28 +199,41 @@ while running:
                 if enemy.vida <= 0:
                     if random.random() < 0.9:#Chance de spawnar o Upgrade
                         nome = random.choice(list(COLETAVEIS.keys()))
+                        if nome == "velocidade":#Contando a quantidade de coletáveis conforme o
+                            qtd_cooldown +=1    #drop, o ideal é contar conforme o click no coletável(pode ser ajustado ainda)
+                        elif nome == "força":
+                            qtd_forca += 1
+                        else:
+                            qtd_distancia += 1
                         imagem = COLETAVEIS[nome]
                         coletavel = Coletavel(enemy.x, enemy.y, imagem)
                         coletaveis.add(coletavel)
 
-        tela_vida = font.render(f'{vida}', True, (255, 255, 255)) 
-        tela_dinheiro = font.render(f'{money}', True, (255, 255, 255))
+        tela_vida = font.render(f'{max(vida, 0)}', True, (255, 255, 255)) 
+        tela_dinheiro = font.render(f'{max(money, 0)}', True, (255, 255, 255))
+        tela_forca = font.render(f'{qtd_forca}',True,(255,255,255) )
+        tela_cooldown = font.render(f'{qtd_cooldown}', True, (255,255,255))
+        tela_distancia = font.render(f'{qtd_distancia}', True,(255,255,255))
         
+        #Colocando na tela as variáves que mudam conforme são recebidas
         screen.blit(tela_vida, (50, 50))
         screen.blit(tela_dinheiro, (50, 105))
+        screen.blit(tela_forca,(900,580))
+        screen.blit(tela_cooldown,(1050, 580))
+        screen.blit(tela_distancia,(975, 580))
 
         coletaveis.draw(screen)
         pygame.display.flip()
         if(vida <= 0):
-            end = True
+            state = "end_screen"
             end_con = "Loser"
         elif(len(remaining_times)==0 and not cur_enemies):
-            end = True
+            state = "end_screen"
             end_con = "Você ganhou o jogo!"
 
         frame_count += 1
 
-    else:
+    elif state == "end_screen":
         
         end_w = 400
         end_h = 300
