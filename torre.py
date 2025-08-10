@@ -14,12 +14,16 @@ class Torre(pygame.sprite.Sprite):
         self.cd = DADOS['cooldown']
         self.ultimo_tiro = pygame.time.get_ticks()
         self.som = pygame.mixer.Sound('som_tiro.mp3')
+        self.selecionado = False
+        
     def draw(self, screen):
         self.img = pygame.image.load(self.path)
         self.img = pygame.transform.scale_by(self.img, 1.1)
         self.img_location = self.img.get_rect()
         self.img_location.center = self.location
         screen.blit(self.img, self.img_location)
+        if self.selecionado:
+            pygame.draw.circle(screen, (0, 0, 0), self.location, self.range, 1)
     def atacar(self, inimigos):
         for inimigo in inimigos:
             dist_x = (inimigo.x - self.location[0]) ** 2

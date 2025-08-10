@@ -118,8 +118,15 @@ while running:
                 if placing_torres and money >= 10:
                     x, y = pygame.mouse.get_pos()
                     money = create_tower(x, y, money)
-        
-        
+                else:
+                    x, y = pygame.mouse.get_pos()
+                    grid_x, grid_y = x//c.tileSize, y//c.tileSize
+                    if grid_x <= c.mapWidth - 1:
+                        for t in torretas:
+                            if(grid_x == t.tile[0] and grid_y == t.tile[1]):
+                                t.selecionado = True
+                            else:
+                                t.selecionado = False
         for t in torretas:
             t.update(cur_enemies)
             t.draw(screen)
@@ -181,10 +188,9 @@ while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
+        
         if end_button_sprite.draw(screen):
             running = False
-
         pygame.display.flip()
     #print(frame_count/60)
     clock.tick(c.clk)
