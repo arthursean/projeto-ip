@@ -25,8 +25,10 @@ upgrade_speed_img = "imagens/Speed.png"
 upgrade_damage_img = "imagens/Damage.png"
 upgrade_range_img = "imagens/Range.png"
 tela_inicial_img = "imagens/tela_inicial.png"
-
+HUD_img = "imagens/HUD_imagem2.png"
 mapa_img = levelData.backgroundPath
+vitoria_img = "imagens/tela_vitoria.png"
+derrota_img = "imagens/Imagem_derrota.png"
 
 mapHeight = levelData.mapHeight
 mapWidth = levelData.mapWidth
