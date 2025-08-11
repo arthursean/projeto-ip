@@ -165,6 +165,19 @@ while running:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 grid_x, grid_y = x//c.tileSize, y//c.tileSize
+
+                for coletavel in coletaveis:
+                    if coletavel.rect.collidepoint(x, y):
+                        if coletavel.nome == "velocidade":
+                            qtd_cooldown += 1
+                        elif coletavel.nome == "força":
+                            qtd_forca += 1
+                        else:
+                            qtd_distancia += 1
+                        coletaveis.remove(coletavel)
+                        break
+
+
                 if torre_marcada and selling_button_sprite.draw(screen):
                         torretas.remove(torre_marcada)
                         money += 5
@@ -222,16 +235,10 @@ while running:
                     money += 10
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
-                    if random.random() < 0.9:#Chance de spawnar o Upgrade
+                    if random.random() < 0.9:
                         nome = random.choice(list(COLETAVEIS.keys()))
-                        if nome == "velocidade":#Contando a quantidade de coletáveis conforme o
-                            qtd_cooldown +=1    #drop, o ideal é contar conforme o click no coletável(pode ser ajustado ainda)
-                        elif nome == "força":
-                            qtd_forca += 1
-                        else:
-                            qtd_distancia += 1
                         imagem = COLETAVEIS[nome]
-                        coletavel = Coletavel(enemy.x, enemy.y, imagem)
+                        coletavel = Coletavel(enemy.x, enemy.y, imagem, nome)  # Passe o nome!
                         coletaveis.add(coletavel)
 
         tela_vida = font.render(f'{max(vida, 0)}', True, (255, 255, 255)) 
@@ -272,6 +279,9 @@ while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                grid_x, grid_y = x//c.tileSize, y//c.tileSize
         
         if end_button_sprite.draw(screen):
             running = False
