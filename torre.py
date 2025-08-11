@@ -19,6 +19,10 @@ class Torre(pygame.sprite.Sprite):
         self.dano = DADOS['dmg']
         self.cd = DADOS['cooldown']
 
+        self.cont_f = 0
+        self.cont_s = 0
+        self.cont_r = 0
+
         self.img = self.animacao[0]
         self.ultimo_tiro = pygame.time.get_ticks()
         self.som = pygame.mixer.Sound('som_tiro.mp3')
@@ -64,9 +68,16 @@ class Torre(pygame.sprite.Sprite):
         if pygame.time.get_ticks() - self.tempo_animacao > 50:
                 self.animar()
     def upgrade(self, atributo):
-        if atributo == 'dano':
-            self.dano = (self.dano*1.5) 
-        elif atributo == 'range':
+        if atributo == 'dano' and self.cont_f < c.max_upg_torre:
+            self.dano = (self.dano*1.5)
+            self.cont_f += 1
+            return 1
+        elif atributo == 'range' and self.cont_r < c.max_upg_torre:
             self.range = (self.range*1.5)
-        elif atributo == 'cooldown':
+            self.cont_r += 1
+            return 1
+        elif atributo == 'cooldown' and self.cont_s < c.max_upg_torre:
             self.cd -= (self.cd*0.5)
+            self.cont_s += 1
+            return 1
+        return 0

@@ -209,22 +209,19 @@ while running:
                 elif torre_marcada and dmg_upgrade_sprite.draw(screen):
                     if qtd_forca > 0:
                         atributo = 'dano'
-                        torre_marcada.upgrade(atributo)
-                        qtd_forca -= 1
+                        qtd_forca -= torre_marcada.upgrade(atributo)
                     else:
                         print("Você não tem coletáveis suficientes")
                 elif torre_marcada and range_upgrade_sprite.draw(screen):
                     if qtd_distancia > 0:
                         atributo = 'range'
-                        torre_marcada.upgrade(atributo)
-                        qtd_distancia -= 1
+                        qtd_distancia -= torre_marcada.upgrade(atributo)
                     else:
                         print("Você não tem coletáveis suficientes")
                 elif torre_marcada and speed_upgrade_sprite.draw(screen):
                     if qtd_cooldown > 0:
                         atributo = 'cooldown'
-                        torre_marcada.upgrade(atributo)
-                        qtd_cooldown -= 1
+                        qtd_cooldown -= torre_marcada.upgrade(atributo)
                     else:
                         print("Você não tem coletáveis suficientes")
                 else:
