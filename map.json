@@ -17,7 +17,8 @@
     [7, 8],  
     [7, 11]  
     ],
-    "enemySpawnTimes": [["rapido", 300], ["supertank", 300], ["supertank", 320], ["rapido", 340], ["tank", 360], ["rapido", 600], ["supertank", 600], ["supertank", 620], ["rapido", 640], ["tank", 660]],
+    "enemySpawnTimes": [[["rapido", 300], ["supertank", 300], ["supertank", 320], ["rapido", 340], ["tank", 360], ["rapido", 600], ["supertank", 600], ["supertank", 620], ["rapido", 640], ["tank", 660]], 
+                        [["tank", 120], ["tank", 150], ["tank", 180], ["rapido", 360], ["rapido", 380], ["rapido", 400], ["rapido", 420], ["supertank", 600], ["supertank", 660]]],
     "backgroundPath": "imagens/map3.png",
     "placingTileId": "1",
     "layers": [

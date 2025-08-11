@@ -10,7 +10,7 @@ class LevelData:
         self.mapWidth = self.jsonInfo["mapWidth"]
         self.mapHeight = self.jsonInfo["mapHeight"]
         self.path = self.formatPath(self.jsonInfo["path"])
-        self.enemySpawnTimes = self.createTimeline(self.jsonInfo["enemySpawnTimes"])
+        self.enemySpawnTimes = [self.createTimeline(i) for i in self.jsonInfo["enemySpawnTimes"]] 
         self.backgroundPath = self.jsonInfo["backgroundPath"]
         self.placingTileId = self.jsonInfo["placingTileId"]
         self.placebleTiles = self.getPlaceableMatrix(self.jsonInfo["layers"][0]["tiles"],
