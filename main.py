@@ -120,8 +120,8 @@ selling_button_sprite = button.Button(c.screen_width - 160, 60, selling_button,T
 dmg_upgrade_sprite = button.Button(c.screen_width - 160, 120, dmg_upgrade, True)
 range_upgrade_sprite = button.Button(c.screen_width - 160, 160, range_upgrade, True)
 speed_upgrade_sprite = button.Button(c.screen_width - 160, 200, speed_upgrade, True)
-times_speed_sprite = button.Button(20, c.screen_height-128-20, times_speed_button, False)
-pause_sprite = button.Button(20+128+15, c.screen_height-128-20, pause_button, True)
+times_speed_sprite = button.Button(c.screen_width- 215, c.screen_height-128-20, times_speed_button, False)
+pause_sprite = button.Button(c.screen_width - 215 +128+15, c.screen_height-128-20, pause_button, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) #Arial 30
@@ -156,9 +156,9 @@ while running:
         screen.blit(mapa, (0,0))
         screen.blit(heart, (-30, 35))
         screen.blit(dinheiro, (10, 105))
-        screen.blit(forca, (900, 590))
-        screen.blit(distancia, (975, 600))
-        screen.blit(cooldown, (1050, 600))
+        screen.blit(forca, (900, 590-128))
+        screen.blit(distancia, (975, 600-128))
+        screen.blit(cooldown, (1050, 600-128))
          
         #desenha o botão de compra
         if buy_button_sprite.draw(screen):
@@ -271,9 +271,9 @@ while running:
         #Colocando na tela as variáves que mudam conforme são recebidas
         screen.blit(tela_vida, (50, 50))
         screen.blit(tela_dinheiro, (50, 105))
-        screen.blit(tela_forca,(900,580))
-        screen.blit(tela_cooldown,(1050, 580))
-        screen.blit(tela_distancia,(975, 580))
+        screen.blit(tela_forca,(900,580-128))
+        screen.blit(tela_cooldown,(1050, 580-128))
+        screen.blit(tela_distancia,(975, 580-128))
 
         coletaveis.draw(screen)
         pygame.display.flip()
