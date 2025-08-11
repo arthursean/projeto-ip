@@ -48,7 +48,6 @@ clock = pygame.time.Clock()
 placing_torres = False
 selling_torres = False
 torre_marcada = None
-torre_upgrade = None
 
 qtd_forca = 0
 qtd_distancia = 0
@@ -155,7 +154,6 @@ while running:
                 placing_torres = False
         if torre_marcada:
             selling_button_sprite.draw(screen)
-        if torre_upgrade:
             dmg_upgrade_sprite.draw(screen)
             range_upgrade_sprite.draw(screen)
             speed_upgrade_sprite.draw(screen)
@@ -182,26 +180,24 @@ while running:
                         torretas.remove(torre_marcada)
                         money += 5
                         torre_marcada = None
-                        torre_upgrade = None
-                elif torre_upgrade and dmg_upgrade_sprite.draw(screen):
+                elif torre_marcada and dmg_upgrade_sprite.draw(screen):
                     if qtd_forca > 0:
                         atributo = 'dano'
-                        torre_upgrade.upgrade(atributo)
+                        torre_marcada.upgrade(atributo)
                         qtd_forca -= 1
-                        torre_upgrade = None
                     else:
                         print("Você não tem coletáveis suficientes")
-                elif torre_upgrade and range_upgrade_sprite.draw(screen):
+                elif torre_marcada and range_upgrade_sprite.draw(screen):
                     if qtd_distancia > 0:
                         atributo = 'range'
-                        torre_upgrade.upgrade(atributo)
+                        torre_marcada.upgrade(atributo)
                         qtd_distancia -= 1
                     else:
                         print("Você não tem coletáveis suficientes")
-                elif torre_upgrade and speed_upgrade_sprite.draw(screen):
+                elif torre_marcada and speed_upgrade_sprite.draw(screen):
                     if qtd_cooldown > 0:
                         atributo = 'cooldown'
-                        torre_upgrade.upgrade(atributo)
+                        torre_marcada.upgrade(atributo)
                         qtd_cooldown -= 1
                     else:
                         print("Você não tem coletáveis suficientes")
@@ -210,7 +206,6 @@ while running:
                         money = create_tower(grid_x, grid_y, money)
                     else:
                         torre_marcada = sel_torres(grid_x, grid_y, None)
-                        torre_upgrade = sel_torres(grid_x, grid_y, None)
         for t in torretas:
             t.update(cur_enemies)
             t.draw(screen)

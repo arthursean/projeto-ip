@@ -61,7 +61,7 @@ class Torre(pygame.sprite.Sprite):
     def update(self, inimigos):
         if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd:
                 self.atacar(inimigos)
-        if pygame.time.get_ticks() - self.tempo_animacao > 100:
+        if pygame.time.get_ticks() - self.tempo_animacao > 50:
                 self.animar()
     def upgrade(self, atributo):
         if atributo == 'dano':
