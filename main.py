@@ -89,6 +89,8 @@ times_speed_button = pygame.image.load(c.times_speed_button_img).convert_alpha()
 times_speed_button = pygame.transform.scale_by(times_speed_button, 4)
 pause_button = pygame.image.load(c.pause_button_img).convert_alpha()
 pause_button = pygame.transform.scale_by(pause_button, 4)
+continue_button = pygame.image.load(c.continue_button_img).convert_alpha()
+continue_button = pygame.transform.scale_by(continue_button, 4)
 selling_button = pygame.image.load(c.selling_button_img).convert_alpha()
 selling_button = pygame.transform.scale_by(selling_button, 2)
 dmg_upgrade = pygame.image.load(c.upgrade_damage_img).convert_alpha()
@@ -122,12 +124,15 @@ range_upgrade_sprite = button.Button(c.screen_width - 160, 160, range_upgrade, T
 speed_upgrade_sprite = button.Button(c.screen_width - 160, 200, speed_upgrade, True)
 times_speed_sprite = button.Button(c.screen_width- 215, c.screen_height-128-20, times_speed_button, False)
 pause_sprite = button.Button(c.screen_width - 215 +128+15, c.screen_height-128-20, pause_button, True)
+continue_sprite = button.Button(c.screen_width- 215, c.screen_height-128-20-50, continue_button, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) #Arial 30
 
 timeline = c.enemySpawnTimes
-remaining_times = list(timeline.keys())
+remaining_waves = timeline
+cur_wave = remaining_waves.pop(0)
+remaining_times = list(cur_wave.keys())
 
 next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
@@ -156,14 +161,15 @@ while running:
         screen.blit(mapa, (0,0))
         screen.blit(heart, (-30, 35))
         screen.blit(dinheiro, (10, 105))
-        screen.blit(forca, (900, 590-128))
-        screen.blit(distancia, (975, 600-128))
-        screen.blit(cooldown, (1050, 600-128))
+        screen.blit(forca, (900, 590-128-40))
+        screen.blit(distancia, (975, 600-128-40))
+        screen.blit(cooldown, (1050, 600-128-40))
          
         #desenha o botão de compra
         if buy_button_sprite.draw(screen):
                 placing_torres = True
             #se estiver colocando torres, aparece o botão de cancelar
+
         if placing_torres:
             #mostrar a torre na tela
             cursor_rect = exercito.get_rect()
@@ -237,7 +243,7 @@ while running:
             t.draw(screen)
 
         if frame_count == next_spawn:
-            for en in timeline[next_spawn]:
+            for en in cur_wave[next_spawn]:
                 if en == "rapido":
                     cur_enemies.append(enemies.rapido(PATH))
                 elif en == "supertank":
@@ -271,21 +277,31 @@ while running:
         #Colocando na tela as variáves que mudam conforme são recebidas
         screen.blit(tela_vida, (50, 50))
         screen.blit(tela_dinheiro, (50, 105))
-        screen.blit(tela_forca,(900,580-128))
-        screen.blit(tela_cooldown,(1050, 580-128))
-        screen.blit(tela_distancia,(975, 580-128))
+        screen.blit(tela_forca,(900,580-128-40))
+        screen.blit(tela_cooldown,(1050, 580-128-40))
+        screen.blit(tela_distancia,(975, 580-128-40))
 
         coletaveis.draw(screen)
-        pygame.display.flip()
+
+        frame_count += 1
+
         if(vida <= 0):
             state = "end_screen"
             end_con = "GAME OVER"
         elif(len(remaining_times)==0 and not cur_enemies):
-            state = "end_screen"
-            end_con = "Você ganhou o jogo!"
+            if len(remaining_waves)<= 0:
+                state = "end_screen"
+                end_con = "Você ganhou o jogo!"
+            else:
+                if continue_sprite.draw(screen):
+                    cur_wave = remaining_waves.pop(0)
+                    remaining_times = list(cur_wave.keys())
 
-        frame_count += 1
+                    next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
+                    frame_count = 0
+                    
+        pygame.display.flip()
     elif state == "paused":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
