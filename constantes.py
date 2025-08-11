@@ -29,6 +29,8 @@ HUD_img = "imagens/HUD_imagem2.png"
 mapa_img = levelData.backgroundPath
 vitoria_img = "imagens/tela_vitoria.png"
 derrota_img = "imagens/Imagem_derrota.png"
+times_speed_button_img = "imagens/acelerar.png"
+pause_button_img = "imagens/pause.png"
 
 mapHeight = levelData.mapHeight
 mapWidth = levelData.mapWidth
