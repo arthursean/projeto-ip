@@ -48,6 +48,7 @@ clock = pygame.time.Clock()
 placing_torres = False
 selling_torres = False
 torre_marcada = None
+torre_upgrade = None
 
 qtd_forca = 0
 qtd_distancia = 0
@@ -75,6 +76,12 @@ play_button = pygame.image.load(c.play_button_img).convert_alpha()
 play_button = pygame.transform.scale_by(play_button, 4)
 selling_button = pygame.image.load(c.selling_button_img).convert_alpha()
 selling_button = pygame.transform.scale_by(selling_button, 2)
+dmg_upgrade = pygame.image.load(c.upgrade_damage_img).convert_alpha()
+dmg_upgrade = pygame.transform.scale_by(dmg_upgrade, 4)
+range_upgrade = pygame.image.load(c.upgrade_range_img).convert_alpha()
+range_upgrade = pygame.transform.scale_by(range_upgrade, 4)
+speed_upgrade = pygame.image.load(c.upgrade_speed_img).convert_alpha()
+speed_upgrade = pygame.transform.scale_by(speed_upgrade, 4)
 
 map_path = c.placebleTiles
 
@@ -94,6 +101,9 @@ cancel_button_sprite = button.Button(c.screen_width - 166, 130, cancel_button, T
 end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
 play_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, play_button, True)
 selling_button_sprite = button.Button(c.screen_width - 160, 60, selling_button,True)
+dmg_upgrade_sprite = button.Button(c.screen_width - 160, 120, dmg_upgrade, True)
+range_upgrade_sprite = button.Button(c.screen_width - 160, 160, range_upgrade, True)
+speed_upgrade_sprite = button.Button(c.screen_width - 160, 200, speed_upgrade, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) # Example: Arial font, size 30
@@ -145,6 +155,10 @@ while running:
                 placing_torres = False
         if torre_marcada:
             selling_button_sprite.draw(screen)
+        if torre_upgrade:
+            dmg_upgrade_sprite.draw(screen)
+            range_upgrade_sprite.draw(screen)
+            speed_upgrade_sprite.draw(screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -155,11 +169,37 @@ while running:
                         torretas.remove(torre_marcada)
                         money += 5
                         torre_marcada = None
+                elif torre_upgrade and dmg_upgrade_sprite.draw(screen):
+                    if qtd_forca > 0:
+                        atributo = 'dano'
+                        torre_upgrade.upgrade(atributo)
+                        qtd_forca -= 1
+                        torre_upgrade = None
+                    else:
+                        print("Você não tem coletáveis suficientes")
+                    torre_upgrade = None
+                elif torre_upgrade and range_upgrade_sprite.draw(screen):
+                    if qtd_distancia > 0:
+                        atributo = 'range'
+                        torre_upgrade.upgrade(atributo)
+                        qtd_distancia -= 1
+                    else:
+                        print("Você não tem coletáveis suficientes")
+                    torre_upgrade = None
+                elif torre_upgrade and speed_upgrade_sprite.draw(screen):
+                    if qtd_cooldown > 0:
+                        atributo = 'cooldown'
+                        torre_upgrade.upgrade(atributo)
+                        qtd_cooldown -= 1
+                    else:
+                        print("Você não tem coletáveis suficientes")
+                    torre_upgrade = None
                 else:
                     if placing_torres and money >= 10:
                         money = create_tower(grid_x, grid_y, money)
                     else:
                         torre_marcada = sel_torres(grid_x, grid_y, None)
+                        torre_upgrade = sel_torres(grid_x, grid_y, torre_upgrade)
         for t in torretas:
             t.update(cur_enemies)
             t.draw(screen)
