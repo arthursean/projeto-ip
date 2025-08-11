@@ -43,5 +43,10 @@ class Torre(pygame.sprite.Sprite):
                 self.atacar(inimigos)
         elif pygame.time.get_ticks() - self.ultimo_tiro > 500:
             self.angulo = 0
-    
-
+    def upgrade(self, atributo):
+        if atributo == 'dano':
+            self.dano = (self.dano*1.5) 
+        elif atributo == 'range':
+            self.range = (self.range*1.5)
+        elif atributo == 'cooldown':
+            self.cd -= (self.cd*0.5)

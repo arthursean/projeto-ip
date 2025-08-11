@@ -21,6 +21,9 @@ buy_button_img = "imagens/comprar.png"
 cancel_button_img = "imagens/cancelar.png"
 end_button_img = "imagens/sair.png"
 selling_button_img = "imagens/vender.png"
+upgrade_speed_img = "imagens/Speed.png"
+upgrade_damage_img = "imagens/Damage.png"
+upgrade_range_img = "imagens/Range.png"
 
 
 mapa_img = levelData.backgroundPath
