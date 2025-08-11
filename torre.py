@@ -7,7 +7,7 @@ class Torre(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
         
-        self.animacao = self.load()
+        self.animacao = self.load("imagens/sheet_caranguejo.png")
         self.pos_animacao = 0
         self.tempo_animacao = pygame.time.get_ticks()
         self.img_base = self.animacao[0]
@@ -43,13 +43,14 @@ class Torre(pygame.sprite.Sprite):
             dist = math.sqrt(dist_x**2 + dist_y**2)
             if(dist < self.range and inimigo.vivo):
                 if(inimigo.vida > 0):
+                    self.change_animacao("imagens/sheet_ataque.png")
                     inimigo.dano(self.dano)
                     self.ultimo_tiro = pygame.time.get_ticks()
                     self.som.play()
                     self.angulo = math.degrees(math.atan2(-dist_y, dist_x) - 90) #subtrai - 90 pois a imagem original é pra cima
                     break
-    def load(self):
-        sprite_sheet = pygame.image.load("imagens/sheet_caranguejo.png")
+    def load(self, path):
+        sprite_sheet = pygame.image.load(path)
         size = sprite_sheet.get_height()
         animation_list = []
         for x in range(7):
@@ -62,10 +63,11 @@ class Torre(pygame.sprite.Sprite):
         self.pos_animacao += 1
         if self.pos_animacao >= len(self.animacao):
             self.pos_animacao = 0
+            #self.change_animacao("imagens/sheet_caranguejo.png")
     def update(self, inimigos, acelerador):
         if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd / acelerador:
                 self.atacar(inimigos)
-        if pygame.time.get_ticks() - self.tempo_animacao > 50 / acelerador:
+        if pygame.time.get_ticks() - self.tempo_animacao > 200 / acelerador:
                 self.animar()
     def upgrade(self, atributo):
         if atributo == 'dano' and self.cont_f < c.max_upg_torre:
@@ -81,3 +83,7 @@ class Torre(pygame.sprite.Sprite):
             self.cont_s += 1
             return 1
         return 0
+    def change_animacao(self, path):
+        self.pos_animacao = 0
+        self.animacao = self.load(path)
+        self.img_base = self.animacao[self.pos_animacao]

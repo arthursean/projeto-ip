@@ -169,7 +169,8 @@ while running:
         if buy_button_sprite.draw(screen):
                 placing_torres = True
             #se estiver colocando torres, aparece o botão de cancelar
-
+        if money < 10:
+            placing_torres = False
         if placing_torres:
             #mostrar a torre na tela
             cursor_rect = exercito.get_rect()
@@ -225,7 +226,7 @@ while running:
                     else:
                         print("Você não tem coletáveis suficientes")
                 else:
-                    if placing_torres and money >= 10:
+                    if placing_torres:
                         money = create_tower(grid_x, grid_y, money)
                     else:
                         torre_marcada = sel_torres(grid_x, grid_y, None)
