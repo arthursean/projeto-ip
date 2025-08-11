@@ -25,6 +25,9 @@ upgrade_speed_img = "imagens/Speed.png"
 upgrade_damage_img = "imagens/Damage.png"
 upgrade_range_img = "imagens/Range.png"
 tela_inicial_img = "imagens/tela_inicial.png"
+times_speed_button_img = "imagens/acelerar.png"
+pause_button_img = "imagens/pause.png"
+
 
 mapa_img = levelData.backgroundPath
 
@@ -33,3 +36,5 @@ mapWidth = levelData.mapWidth
 tileSize = levelData.tileSize
 
 enemySpawnTimes = levelData.enemySpawnTimes
+
+speed_mult = 5

@@ -73,6 +73,10 @@ end_button = pygame.image.load(c.end_button_img).convert_alpha()
 end_button = pygame.transform.scale_by(end_button, 4)
 play_button = pygame.image.load(c.play_button_img).convert_alpha()
 play_button = pygame.transform.scale_by(play_button, 4)
+times_speed_button = pygame.image.load(c.times_speed_button_img).convert_alpha()
+times_speed_button = pygame.transform.scale_by(times_speed_button, 4)
+pause_button = pygame.image.load(c.pause_button_img).convert_alpha()
+pause_button = pygame.transform.scale_by(pause_button, 4)
 selling_button = pygame.image.load(c.selling_button_img).convert_alpha()
 selling_button = pygame.transform.scale_by(selling_button, 2)
 dmg_upgrade = pygame.image.load(c.upgrade_damage_img).convert_alpha()
@@ -105,6 +109,8 @@ selling_button_sprite = button.Button(c.screen_width - 160, 60, selling_button,T
 dmg_upgrade_sprite = button.Button(c.screen_width - 160, 120, dmg_upgrade, True)
 range_upgrade_sprite = button.Button(c.screen_width - 160, 160, range_upgrade, True)
 speed_upgrade_sprite = button.Button(c.screen_width - 160, 200, speed_upgrade, True)
+times_speed_sprite = button.Button(20, c.screen_height-128-20, times_speed_button, False)
+pause_sprite = button.Button(20+128+15, c.screen_height-128-20, pause_button, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) # Example: Arial font, size 30
@@ -116,7 +122,10 @@ next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
 frame_count = 0
 end_con = ""
-state = "title_screen" 
+state = "title_screen"
+
+times_speed = 1
+
 while running:
     if state == "title_screen":
         screen.blit(tela_inicial_formatada, (0,0))
@@ -174,7 +183,6 @@ while running:
                         coletaveis.remove(coletavel)
                         break
 
-
                 if torre_marcada and selling_button_sprite.draw(screen):
                         torretas.remove(torre_marcada)
                         money += 5
@@ -205,6 +213,12 @@ while running:
                         money = create_tower(grid_x, grid_y, money)
                     else:
                         torre_marcada = sel_torres(grid_x, grid_y, None)
+
+        times_speed = c.speed_mult if times_speed_sprite.draw(screen) else 1
+     
+        if pause_sprite.draw(screen):
+            state = "paused"
+
         for t in torretas:
             t.update(cur_enemies)
             t.draw(screen)
@@ -259,6 +273,14 @@ while running:
 
         frame_count += 1
 
+    elif state == "paused":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        if pause_sprite.draw(screen):
+            state = "game_screen"
+
     elif state == "end_screen":
         
         end_w = 400
@@ -281,6 +303,6 @@ while running:
             running = False
         pygame.display.flip()
     #print(frame_count/60)
-    clock.tick(c.clk)
+    clock.tick(c.clk*times_speed)
 
 pygame.quit()
