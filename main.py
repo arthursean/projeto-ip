@@ -169,6 +169,7 @@ while running:
                         torretas.remove(torre_marcada)
                         money += 5
                         torre_marcada = None
+                        torre_upgrade = None
                 elif torre_upgrade and dmg_upgrade_sprite.draw(screen):
                     if qtd_forca > 0:
                         atributo = 'dano'
@@ -199,7 +200,7 @@ while running:
                         money = create_tower(grid_x, grid_y, money)
                     else:
                         torre_marcada = sel_torres(grid_x, grid_y, None)
-                        torre_upgrade = sel_torres(grid_x, grid_y, torre_upgrade)
+                        torre_upgrade = sel_torres(grid_x, grid_y, None)
         for t in torretas:
             t.update(cur_enemies)
             t.draw(screen)
