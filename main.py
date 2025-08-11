@@ -234,9 +234,8 @@ while running:
      
         if pause_sprite.draw(screen):
             state = "paused"
-
+        torretas.update(cur_enemies, times_speed)
         for t in torretas:
-            t.update(cur_enemies)
             t.draw(screen)
 
         if frame_count == next_spawn:

@@ -62,10 +62,10 @@ class Torre(pygame.sprite.Sprite):
         self.pos_animacao += 1
         if self.pos_animacao >= len(self.animacao):
             self.pos_animacao = 0
-    def update(self, inimigos):
-        if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd:
+    def update(self, inimigos, acelerador):
+        if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd / acelerador:
                 self.atacar(inimigos)
-        if pygame.time.get_ticks() - self.tempo_animacao > 50:
+        if pygame.time.get_ticks() - self.tempo_animacao > 50 / acelerador:
                 self.animar()
     def upgrade(self, atributo):
         if atributo == 'dano' and self.cont_f < c.max_upg_torre:
