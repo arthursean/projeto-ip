@@ -178,7 +178,6 @@ while running:
                         torre_upgrade = None
                     else:
                         print("Você não tem coletáveis suficientes")
-                    torre_upgrade = None
                 elif torre_upgrade and range_upgrade_sprite.draw(screen):
                     if qtd_distancia > 0:
                         atributo = 'range'
@@ -186,7 +185,6 @@ while running:
                         qtd_distancia -= 1
                     else:
                         print("Você não tem coletáveis suficientes")
-                    torre_upgrade = None
                 elif torre_upgrade and speed_upgrade_sprite.draw(screen):
                     if qtd_cooldown > 0:
                         atributo = 'cooldown'
@@ -194,7 +192,6 @@ while running:
                         qtd_cooldown -= 1
                     else:
                         print("Você não tem coletáveis suficientes")
-                    torre_upgrade = None
                 else:
                     if placing_torres and money >= 10:
                         money = create_tower(grid_x, grid_y, money)
