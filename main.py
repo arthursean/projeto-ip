@@ -95,6 +95,8 @@ vida = 100
 
 cur_enemies = []
 #cria o botão de compra
+tela_inicial = pygame.image.load(c.tela_inicial_img)
+tela_inicial_formatada = pygame.transform.scale(tela_inicial,(1184,702))
 buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 166, 130, cancel_button, True)
 end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
@@ -117,11 +119,8 @@ end_con = ""
 state = "title_screen" 
 while running:
     if state == "title_screen":
-        rect_w = 400
-        rect_h = 300
-        start_rect = pygame.Rect((c.screen_width-rect_w)//2, (c.screen_height-rect_h)//2, rect_w, rect_h)
+        screen.blit(tela_inicial_formatada, (0,0))
 
-        pygame.draw.rect(screen, (255, 0, 0), start_rect)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False

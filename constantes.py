@@ -24,7 +24,7 @@ selling_button_img = "imagens/vender.png"
 upgrade_speed_img = "imagens/Speed.png"
 upgrade_damage_img = "imagens/Damage.png"
 upgrade_range_img = "imagens/Range.png"
-
+tela_inicial_img = "imagens/tela_inicial.png"
 
 mapa_img = levelData.backgroundPath
 
