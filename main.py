@@ -26,7 +26,7 @@ def create_tower(x, y, money):
 def sel_torres(x, y, torre_marcada):
     if torre_marcada and grid_x > c.mapWidth - 2:
         torre_marcada.selecionado = False
-        torre_marcada = None
+        return None
     for t in torretas:
         if(grid_x == t.tile[0] and grid_y == t.tile[1]):
             t.selecionado = True
@@ -34,6 +34,7 @@ def sel_torres(x, y, torre_marcada):
         else:
             t.selecionado = False
     return torre_marcada
+    
 PATH = c.path
 pygame.init()
 torretas = pygame.sprite.Group()
@@ -158,7 +159,7 @@ while running:
                     if placing_torres and money >= 10:
                         money = create_tower(grid_x, grid_y, money)
                     else:
-                        torre_marcada = sel_torres(grid_x, grid_y, torre_marcada)
+                        torre_marcada = sel_torres(grid_x, grid_y, None)
         for t in torretas:
             t.update(cur_enemies)
             t.draw(screen)
