@@ -281,6 +281,7 @@ while running:
         screen.blit(tela_cooldown,(1050, 580-128-40))
         screen.blit(tela_distancia,(975, 580-128-40))
 
+        coletaveis.update()
         coletaveis.draw(screen)
 
         frame_count += 1
