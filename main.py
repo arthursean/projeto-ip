@@ -311,7 +311,7 @@ while running:
 
         if pause_sprite.draw(screen):
             state = "game_screen"
-            pygame.mixer.music.pause()
+            pygame.mixer.music.unpause()
 
     elif state == "end_screen":
 
