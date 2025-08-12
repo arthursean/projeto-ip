@@ -94,11 +94,9 @@ continue_button = pygame.transform.scale_by(continue_button, 4)
 selling_button = pygame.image.load(c.selling_button_img).convert_alpha()
 selling_button = pygame.transform.scale_by(selling_button, 2)
 dmg_upgrade = pygame.image.load(c.upgrade_damage_img).convert_alpha()
-dmg_upgrade = pygame.transform.scale_by(dmg_upgrade, 4)
 range_upgrade = pygame.image.load(c.upgrade_range_img).convert_alpha()
-range_upgrade = pygame.transform.scale_by(range_upgrade, 4)
 speed_upgrade = pygame.image.load(c.upgrade_speed_img).convert_alpha()
-speed_upgrade = pygame.transform.scale_by(speed_upgrade, 4)
+
 
 map_path = c.placebleTiles
 
@@ -161,9 +159,9 @@ while running:
         screen.blit(mapa, (0,0))
         screen.blit(heart, (-30, 35))
         screen.blit(dinheiro, (10, 105))
-        screen.blit(forca, (900, 590-128-40))
-        screen.blit(distancia, (975, 600-128-40))
-        screen.blit(cooldown, (1050, 600-128-40))
+        screen.blit(forca, (900, 600-200))
+        screen.blit(distancia, (975, 600-200))
+        screen.blit(cooldown, (1050, 600-200))
          
         #desenha o botão de compra
         if buy_button_sprite.draw(screen):
