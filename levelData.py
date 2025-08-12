@@ -12,15 +12,12 @@ class LevelData:
         self.path = self.formatPath(self.jsonInfo["path"])
         self.enemySpawnTimes = [self.createTimeline(i) for i in self.jsonInfo["enemySpawnTimes"]] 
         self.backgroundPath = self.jsonInfo["backgroundPath"]
-        self.placingTileId = self.jsonInfo["placingTileId"]
-        self.placebleTiles = self.getPlaceableMatrix(self.jsonInfo["layers"][0]["tiles"],
-                                                     self.mapWidth, self.mapHeight, 
-                                                     self.placingTileId) 
-    def getPlaceableMatrix(self, data, w, h, valId):
-        matrix = [[0 for i in range(w)] for j in range(h)]
-
+        self.placebleTiles = self.getPlaceableMatrix(self.jsonInfo["layers"][[i["name"] for i in self.jsonInfo["layers"]].index("torres")]["tiles"],
+                                                     self.mapWidth, self.mapHeight)
+    def getPlaceableMatrix(self, data, w, h):
+        matrix = [[1 for i in range(w)] for j in range(h)]
         for i in data:
-            matrix[i["y"]][i["x"]] = 1 if i["id"] == valId else 0
+            matrix[i["y"]][i["x"]] = 0
         return matrix
 
     def formatPath(self, m_path):
