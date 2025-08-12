@@ -1,1 +1,0 @@
-DADOS = {"cooldown" : 1200, "dmg" : 30, "range" : 120}
