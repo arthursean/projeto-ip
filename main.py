@@ -238,6 +238,7 @@ while running:
      
         if pause_sprite.draw(screen):
             state = "paused"
+            pygame.mixer.music.pause()
         torretas.update(cur_enemies, times_speed)
         for t in torretas:
             t.draw(screen)
@@ -310,6 +311,7 @@ while running:
 
         if pause_sprite.draw(screen):
             state = "game_screen"
+            pygame.mixer.music.pause()
 
     elif state == "end_screen":
 
