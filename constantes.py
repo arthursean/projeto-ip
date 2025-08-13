@@ -41,6 +41,6 @@ tileSize = levelData.tileSize
 
 enemySpawnTimes = levelData.enemySpawnTimes
 
-speed_mult = 5
+speed_mult = 3
 
 max_upg_torre = 2
