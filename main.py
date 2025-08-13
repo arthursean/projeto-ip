@@ -6,7 +6,7 @@ import button
 import constantes as c
 from coletaveis import COLETAVEIS
 from coletaveis import Coletavel
-
+import load_images as l
 def create_tower(x, y, money):
             if grid_x > c.mapWidth - 2:
                 print("fora dos limites")
@@ -39,7 +39,7 @@ def reset():
     global money, vida, frame_count, wave_count, torretas, coletaveis, cur_enemies
     global qtd_forca, qtd_distancia, qtd_cooldown, timeline, remaining_waves
     global cur_wave, remaining_times, qnt_rounds, next_spawn
-    money = 60
+    money = 1000
     vida = 100
     frame_count = 0
     wave_count = 1
@@ -73,80 +73,20 @@ torre_marcada = None
 qtd_forca = 0
 qtd_distancia = 0
 qtd_cooldown = 0
-#Carrega Música Manguetown
+
 pygame.mixer.music.set_volume(0.1)
 pygame.mixer.music.load("assets/sons/Manguetown.mp3")
 pygame.mixer.music.play(-1)
 
-#Renderiza as quantidades de coletáveis coletados
 
-#carrega imagens
-tela_derrota = pygame.image.load(c.derrota_img)
-tela_derrota_formatada = pygame.transform.scale(tela_derrota, (592,351))
-tela_vitoria = pygame.image.load(c.vitoria_img)
-tela_vitoria_formatada = pygame.transform.scale(tela_vitoria,(592,351))
-tela_hud = pygame.image.load(c.HUD_img)
-tela_hud_formatada = pygame.transform.scale(tela_hud,(352,704))
-tela_inicial = pygame.image.load(c.tela_inicial_img)
-tela_inicial_formatada = pygame.transform.scale(tela_inicial,(1184,702))
-forca = pygame.image.load(c.forca_img)
-forca = pygame.transform.scale_by(forca, 1.5)
-distancia = pygame.image.load(c.distancia_img)
-distancia = pygame.transform.scale_by(distancia, 1.5)
-cooldown = pygame.image.load(c.cooldown_img)
-cooldown = pygame.transform.scale_by(cooldown, 1.5)
-exercito = pygame.image.load(c.exercito_img).convert_alpha()
-heart = pygame.image.load(c.heart_img).convert_alpha()
-heart = pygame.transform.scale_by(heart, 2)
-dinheiro = pygame.image.load(c.dinheiro_img).convert_alpha()
-dinheiro = pygame.transform.scale_by(dinheiro, 2)
-mapa = pygame.image.load(c.mapa_img).convert_alpha()
-buy_button = pygame.image.load(c.buy_button_img).convert_alpha()
-buy_button = pygame.transform.scale_by(buy_button, 4)
-cancel_button = pygame.image.load(c.cancel_button_img).convert_alpha()
-cancel_button = pygame.transform.scale_by(cancel_button, 4)
-end_button = pygame.image.load(c.end_button_img).convert_alpha()
-end_button = pygame.transform.scale_by(end_button, 4)
-restart_button = pygame.image.load(c.restart_button_img).convert_alpha()
-restart_button = pygame.transform.scale_by(restart_button, 4)
-play_button = pygame.image.load(c.play_button_img).convert_alpha()
-play_button = pygame.transform.scale_by(play_button, 4)
-times_speed_button = pygame.image.load(c.times_speed_button_img).convert_alpha()
-times_speed_button = pygame.transform.scale_by(times_speed_button, 4)
-pause_button = pygame.image.load(c.pause_button_img).convert_alpha()
-pause_button = pygame.transform.scale_by(pause_button, 4)
-continue_button = pygame.image.load(c.continue_button_img).convert_alpha()
-continue_button = pygame.transform.scale_by(continue_button, 4)
-selling_button = pygame.image.load(c.selling_button_img).convert_alpha()
-selling_button = pygame.transform.scale_by(selling_button, 4)
-dmg_upgrade = pygame.image.load(c.upgrade_damage_img).convert_alpha()
-dmg_upgrade = pygame.transform.scale_by(dmg_upgrade, 4)
-range_upgrade = pygame.image.load(c.upgrade_range_img).convert_alpha()
-range_upgrade = pygame.transform.scale_by(range_upgrade, 4)
-speed_upgrade = pygame.image.load(c.upgrade_speed_img).convert_alpha()
-speed_upgrade = pygame.transform.scale_by(speed_upgrade, 4)
 
 map_path = c.placebleTiles
 
-#Lista de inimigos -> comentario!!!!!!
 money = 60
 vida = 100
 
 cur_enemies = []
-#cria o botão de compra
 
-buy_button_sprite = button.Button(c.screen_width - 190, 10, buy_button,True)
-cancel_button_sprite = button.Button(c.screen_width - 195, 130, cancel_button, True)
-end_button_sprite = button.Button((c.screen_width//2) - 70, (c.screen_height//2) - 60, end_button, True)
-restart_button_sprite = button.Button((c.screen_width//2) -70, c.screen_height//2 + 30, restart_button, True)
-play_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, play_button, True)
-selling_button_sprite = button.Button(c.screen_width - 195, 75, selling_button,True)
-dmg_upgrade_sprite = button.Button(c.screen_width - 190, 150, dmg_upgrade, True)
-range_upgrade_sprite = button.Button(c.screen_width - 190, 200, range_upgrade, True)
-speed_upgrade_sprite = button.Button(c.screen_width - 190, 250, speed_upgrade, True)
-times_speed_sprite = button.Button(c.screen_width- 270, c.screen_height-128-20, times_speed_button, False)
-pause_sprite = button.Button(c.screen_width - 215 + 100, c.screen_height-128-20, pause_button, True)
-continue_sprite = button.Button(c.screen_width- 215, c.screen_height-128-20-50, continue_button, True)
 running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) #Arial 30
@@ -161,47 +101,47 @@ times_speed = 1
 while running:
     dt = clock.tick(c.clk * times_speed) / 1000
     if state == "title_screen":
-        screen.blit(tela_inicial_formatada, (0,0))
+        screen.blit(l.tela_inicial_formatada, (0,0))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
-        if play_button_sprite.draw(screen):
+        if l.play_button_sprite.draw(screen):
             state = "game_screen"
 
         pygame.display.flip()
     elif state == "game_screen":
         #SEÇÃO DE DESENHO
         screen.fill((128,128,128))
-        screen.blit(tela_hud_formatada,(832,0))
-        screen.blit(mapa, (0,0))
-        screen.blit(heart, (-30, 35))
-        screen.blit(dinheiro, (10, 105))
-        screen.blit(forca, (900, 600-210))
-        screen.blit(distancia, (975, 600-210))
-        screen.blit(cooldown, (1050, 600-210))
+        screen.blit(l.tela_hud_formatada,(832,0))
+        screen.blit(l.mapa, (0,0))
+        screen.blit(l.heart, (-30, 35))
+        screen.blit(l.dinheiro, (10, 105))
+        screen.blit(l.forca, (900, 600-210))
+        screen.blit(l.distancia, (975, 600-210))
+        screen.blit(l.cooldown, (1050, 600-210))
          
         #desenha o botão de compra
-        if buy_button_sprite.draw(screen):
+        if l.buy_button_sprite.draw(screen):
                 placing_torres = True
             #se estiver colocando torres, aparece o botão de cancelar
         if money < c.turret_price:
             placing_torres = False
         if placing_torres:
             #mostrar a torre na tela
-            cursor_rect = exercito.get_rect()
+            cursor_rect = l.exercito.get_rect()
             cursor_pos = pygame.mouse.get_pos()
             cursor_rect.center = cursor_pos
             if cursor_pos[0] <= 890:
-                screen.blit(exercito, cursor_rect)
-            if cancel_button_sprite.draw(screen):
+                screen.blit(l.exercito, cursor_rect)
+            if l.cancel_button_sprite.draw(screen):
                 placing_torres = False
         if torre_marcada:
-            selling_button_sprite.draw(screen)
-            dmg_upgrade_sprite.draw(screen)
-            range_upgrade_sprite.draw(screen)
-            speed_upgrade_sprite.draw(screen)
+            l.selling_button_sprite.draw(screen)
+            l.dmg_upgrade_sprite.draw(screen)
+            l.range_upgrade_sprite.draw(screen)
+            l.speed_upgrade_sprite.draw(screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -220,23 +160,23 @@ while running:
                         coletaveis.remove(coletavel)
                         break
 
-                if torre_marcada and selling_button_sprite.draw(screen):
+                if torre_marcada and l.selling_button_sprite.draw(screen):
                         torretas.remove(torre_marcada)
                         money += 10
                         torre_marcada = None
-                elif torre_marcada and dmg_upgrade_sprite.draw(screen):
+                elif torre_marcada and l.dmg_upgrade_sprite.draw(screen):
                     if qtd_forca > 0:
                         atributo = 'dano'
                         qtd_forca -= torre_marcada.upgrade(atributo)
                     else:
                         print("Você não tem coletáveis suficientes")
-                elif torre_marcada and range_upgrade_sprite.draw(screen):
+                elif torre_marcada and l.range_upgrade_sprite.draw(screen):
                     if qtd_distancia > 0:
                         atributo = 'range'
                         qtd_distancia -= torre_marcada.upgrade(atributo)
                     else:
                         print("Você não tem coletáveis suficientes")
-                elif torre_marcada and speed_upgrade_sprite.draw(screen):
+                elif torre_marcada and l.speed_upgrade_sprite.draw(screen):
                     if qtd_cooldown > 0:
                         atributo = 'cooldown'
                         qtd_cooldown -= torre_marcada.upgrade(atributo)
@@ -248,9 +188,9 @@ while running:
                     else:
                         torre_marcada = sel_torres(grid_x, grid_y, None)
 
-        times_speed = c.speed_mult if times_speed_sprite.draw(screen) else 1
+        times_speed = c.speed_mult if l.times_speed_sprite.draw(screen) else 1
      
-        if pause_sprite.draw(screen):
+        if l.pause_sprite.draw(screen):
             state = "paused"
             pygame.mixer.music.pause()
         torretas.update(cur_enemies, times_speed)
@@ -310,7 +250,7 @@ while running:
                 state = "end_screen"
                 end_con = "Você ganhou o jogo!"
             else:
-                if continue_sprite.draw(screen):
+                if l.continue_sprite.draw(screen):
                     cur_wave = remaining_waves.pop(0)
                     remaining_times = list(cur_wave.keys())
                     money += 10
@@ -325,7 +265,7 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
 
-        if pause_sprite.draw(screen):
+        if l.pause_sprite.draw(screen):
             state = "game_screen"
             pygame.mixer.music.unpause()
 
@@ -334,9 +274,9 @@ while running:
         tela_end = font.render(f'{end_con}', True, (255, 255, 255))
         moldura_preta = pygame.draw.rect(screen, (101, 67, 33), (1184//4 - 10, 702//4 - 10, 615, 368))
         if end_con == "Você ganhou o jogo!":
-            screen.blit(tela_vitoria_formatada,((1184//4), (702//4)))
+            screen.blit(l.tela_vitoria_formatada,((1184//4), (702//4)))
         else:
-            screen.blit(tela_derrota_formatada, ((1184//4),(702//4)))
+            screen.blit(l.tela_derrota_formatada, ((1184//4),(702//4)))
         screen.blit(tela_end, (((1184//4), (702//4))))
 
         for event in pygame.event.get():
@@ -346,9 +286,9 @@ while running:
                 x, y = pygame.mouse.get_pos()
                 grid_x, grid_y = x//c.tileSize, y//c.tileSize
         
-        if end_button_sprite.draw(screen):
+        if l.end_button_sprite.draw(screen):
             running = False
-        elif restart_button_sprite.draw(screen):
+        elif l.restart_button_sprite.draw(screen):
             running = True
             reset()
             state = "title_screen"
