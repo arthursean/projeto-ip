@@ -208,7 +208,7 @@ while running:
 
                 if torre_marcada and selling_button_sprite.draw(screen):
                         torretas.remove(torre_marcada)
-                        money += 5
+                        money += 10
                         torre_marcada = None
                 elif torre_marcada and dmg_upgrade_sprite.draw(screen):
                     if qtd_forca > 0:
@@ -260,7 +260,7 @@ while running:
             enemy.draw(screen)
             if not enemy.vivo:
                 if enemy.eliminado:
-                    money += 10
+                    money += 5
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
                     if random.random() < 0.25:
