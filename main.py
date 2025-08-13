@@ -106,7 +106,7 @@ speed_upgrade = pygame.transform.scale_by(speed_upgrade, 4)
 map_path = c.placebleTiles
 
 #Lista de inimigos -> comentario!!!!!!
-money = 100
+money = 60
 vida = 100
 '''cur_enemies = [
     enemies.rapido(PATH),
@@ -262,7 +262,7 @@ while running:
             enemy.draw(screen)
             if not enemy.vivo:
                 if enemy.eliminado:
-                    money += 3
+                    money += 2
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
                     if random.random() < 0.15:
@@ -301,7 +301,7 @@ while running:
                 if continue_sprite.draw(screen):
                     cur_wave = remaining_waves.pop(0)
                     remaining_times = list(cur_wave.keys())
-
+                    money += 10
                     next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
                     wave_count += 1

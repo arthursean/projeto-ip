@@ -4,7 +4,7 @@ screen_width = 1088
 screen_height = 702
 clk = 60
 side_panel = 96
-turret_price = 25
+turret_price = 20
 
 levelData = LevelData("map.json")
 
