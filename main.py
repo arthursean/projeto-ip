@@ -146,6 +146,7 @@ state = "title_screen"
 times_speed = 1
 
 while running:
+    dt = clock.tick(c.clk * times_speed) / 1000
     if state == "title_screen":
         screen.blit(tela_inicial_formatada, (0,0))
 
@@ -256,7 +257,7 @@ while running:
             next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
         for enemy in cur_enemies:
-            vida = enemy.movimentação(vida)
+            vida = enemy.movimentação(vida, times_speed)
             enemy.draw(screen)
             if not enemy.vivo:
                 if enemy.eliminado:
