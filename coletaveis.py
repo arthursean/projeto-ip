@@ -1,8 +1,8 @@
 import pygame
 
-bota_velocidade = pygame.image.load("imagens/pitu.png")
-braco_forca = pygame.image.load("imagens/laursa.png")
-arco_distancia = pygame.image.load("imagens/oculos.png")
+bota_velocidade = pygame.image.load("assets/imagens/pitu.png")
+braco_forca = pygame.image.load("assets/imagens/laursa.png")
+arco_distancia = pygame.image.load("assets/imagens/oculos.png")
 COLETAVEIS = {"velocidade": bota_velocidade, "força": braco_forca, "distancia": arco_distancia}
 
 class Coletavel(pygame.sprite.Sprite):
@@ -13,9 +13,9 @@ class Coletavel(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(x, y))
 
         self.sheets = {
-            "velocidade": ("imagens/sheet_pitu.png", 23),
-            "força": ("imagens/sheet_laursa.png", 11),
-            "distancia": ("imagens/sheet_oculos.png", 12)
+            "velocidade": ("assets/imagens/sheet_pitu.png", 23),
+            "força": ("assets/imagens/sheet_laursa.png", 11),
+            "distancia": ("assets/imagens/sheet_oculos.png", 12)
         }
         sheet_path, self.num_frames = self.sheets.get(nome, (None, 1))
         self.animacao = self.load(sheet_path, self.num_frames)

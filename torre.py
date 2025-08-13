@@ -7,11 +7,11 @@ class Torre(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
         
-        self.animacao = self.load("imagens/sheet_caranguejo.png", 9)
+        self.animacao = self.load("assets/imagens/sheet_caranguejo.png", 9)
         self.pos_animacao = 0
         self.tempo_animacao = pygame.time.get_ticks()
         self.img_base = self.animacao[0]
-        self.dict_size = {"imagens/sheet_caranguejo.png" : 9, "imagens/sheet_ataque.png" : 11}
+        self.dict_size = {"assets/imagens/sheet_caranguejo.png" : 9, "assets/imagens/sheet_ataque.png" : 11}
 
         self.tile = pos
         self.location = ((pos[0] + 0.5) * c.tileSize, (pos[1] + 0.5) * c.tileSize)
@@ -26,7 +26,7 @@ class Torre(pygame.sprite.Sprite):
 
         self.img = self.animacao[0]
         self.ultimo_tiro = pygame.time.get_ticks()
-        self.som = pygame.mixer.Sound('som_tiro.mp3')
+        self.som = pygame.mixer.Sound('assets/sons/som_tiro.mp3')
         self.angulo = 0
         self.selecionado = False
         
@@ -44,7 +44,7 @@ class Torre(pygame.sprite.Sprite):
             dist = math.sqrt(dist_x**2 + dist_y**2)
             if(dist < self.range and inimigo.vivo):
                 if(inimigo.vida > 0):
-                    self.change_animacao("imagens/sheet_ataque.png")
+                    self.change_animacao("assets/imagens/sheet_ataque.png")
                     inimigo.dano(self.dano)
                     self.ultimo_tiro = pygame.time.get_ticks()
                     self.som.play()
@@ -64,7 +64,7 @@ class Torre(pygame.sprite.Sprite):
         self.pos_animacao += 1
         if self.pos_animacao >= len(self.animacao):
             self.pos_animacao = 0
-            self.change_animacao("imagens/sheet_caranguejo.png")
+            self.change_animacao("assets/imagens/sheet_caranguejo.png")
     def update(self, inimigos, acelerador):
         if pygame.time.get_ticks() - self.ultimo_tiro >= self.cd / acelerador:
                 self.atacar(inimigos)

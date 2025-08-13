@@ -75,7 +75,7 @@ qtd_distancia = 0
 qtd_cooldown = 0
 #Carrega Música Manguetown
 pygame.mixer.music.set_volume(0.1)
-pygame.mixer.music.load("Manguetown.mp3")
+pygame.mixer.music.load("assets/sons/Manguetown.mp3")
 pygame.mixer.music.play(-1)
 
 #Renderiza as quantidades de coletáveis coletados
@@ -135,17 +135,17 @@ vida = 100
 cur_enemies = []
 #cria o botão de compra
 
-buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
-cancel_button_sprite = button.Button(c.screen_width - 166, 130, cancel_button, True)
-end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
-restart_button_sprite = button.Button((c.screen_width//2) -40, c.screen_height//2 + 30, restart_button, True)
+buy_button_sprite = button.Button(c.screen_width - 190, 10, buy_button,True)
+cancel_button_sprite = button.Button(c.screen_width - 195, 130, cancel_button, True)
+end_button_sprite = button.Button((c.screen_width//2) - 70, (c.screen_height//2) - 60, end_button, True)
+restart_button_sprite = button.Button((c.screen_width//2) -70, c.screen_height//2 + 30, restart_button, True)
 play_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, play_button, True)
-selling_button_sprite = button.Button(c.screen_width - 160, 55, selling_button,True)
-dmg_upgrade_sprite = button.Button(c.screen_width - 190, 120, dmg_upgrade, True)
-range_upgrade_sprite = button.Button(c.screen_width - 190, 170, range_upgrade, True)
-speed_upgrade_sprite = button.Button(c.screen_width - 190, 220, speed_upgrade, True)
-times_speed_sprite = button.Button(c.screen_width- 215, c.screen_height-128-20, times_speed_button, False)
-pause_sprite = button.Button(c.screen_width - 215 +128+15, c.screen_height-128-20, pause_button, True)
+selling_button_sprite = button.Button(c.screen_width - 195, 75, selling_button,True)
+dmg_upgrade_sprite = button.Button(c.screen_width - 190, 150, dmg_upgrade, True)
+range_upgrade_sprite = button.Button(c.screen_width - 190, 200, range_upgrade, True)
+speed_upgrade_sprite = button.Button(c.screen_width - 190, 250, speed_upgrade, True)
+times_speed_sprite = button.Button(c.screen_width- 270, c.screen_height-128-20, times_speed_button, False)
+pause_sprite = button.Button(c.screen_width - 215 + 100, c.screen_height-128-20, pause_button, True)
 continue_sprite = button.Button(c.screen_width- 215, c.screen_height-128-20-50, continue_button, True)
 running = True
 pygame.font.init()
@@ -350,22 +350,7 @@ while running:
             running = False
         elif restart_button_sprite.draw(screen):
             running = True
-            money = 60
-            vida = 100
-            frame_count = 0
-            wave_count = 1
-            torretas.empty()
-            coletaveis.empty()
-            cur_enemies.clear()
-            qtd_forca = 0
-            qtd_distancia = 0
-            qtd_cooldown = 0
-            timeline = [c.levelData.createTimeline(i) for i in c.levelData.jsonInfo["enemySpawnTimes"]]
-            remaining_waves = timeline
-            cur_wave = remaining_waves.pop(0)
-            remaining_times = list(cur_wave.keys())
-            qnt_rounds = len(timeline) + 1
-            next_spawn = remaining_times[0] if len(remaining_times)>0 else - 1
+            reset()
             state = "title_screen"
         pygame.display.flip()
     #print(frame_count/60)
