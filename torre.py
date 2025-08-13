@@ -80,7 +80,7 @@ class Torre(pygame.sprite.Sprite):
             self.cont_r += 1
             return 1
         elif atributo == 'cooldown' and self.cont_s < c.max_upg_torre:
-            self.cd -= (self.cd*0.85)
+            self.cd *= 0.85
             self.cont_s += 1
             return 1
         return 0

@@ -136,7 +136,7 @@ timeline = c.enemySpawnTimes
 remaining_waves = timeline
 cur_wave = remaining_waves.pop(0)
 remaining_times = list(cur_wave.keys())
-
+qnt_rounds = len(timeline) + 1
 next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
 frame_count = 0
@@ -144,6 +144,7 @@ end_con = ""
 state = "title_screen"
 
 times_speed = 1
+wave_count = 1
 
 while running:
     if state == "title_screen":
@@ -260,7 +261,7 @@ while running:
             enemy.draw(screen)
             if not enemy.vivo:
                 if enemy.eliminado:
-                    money += 5
+                    money += 3
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
                     if random.random() < 0.15:
@@ -274,6 +275,7 @@ while running:
         tela_forca = font.render(f'{qtd_forca}',True,(255,255,255) )
         tela_cooldown = font.render(f'{qtd_cooldown}', True, (255,255,255))
         tela_distancia = font.render(f'{qtd_distancia}', True,(255,255,255))
+        tela_rounds = font.render(f'{wave_count}/{qnt_rounds} rounds', True, (255, 255, 255))
         
         #Colocando na tela as variáves que mudam conforme são recebidas
         screen.blit(tela_vida, (50, 50))
@@ -281,12 +283,12 @@ while running:
         screen.blit(tela_forca,(900,580-128-40))
         screen.blit(tela_cooldown,(1050, 580-128-40))
         screen.blit(tela_distancia,(975, 580-128-40))
+        screen.blit(tela_rounds, (400, 10))
 
         coletaveis.update()
         coletaveis.draw(screen)
 
         frame_count += 1
-
         if(vida <= 0):
             state = "end_screen"
             end_con = "GAME OVER"
@@ -301,6 +303,7 @@ while running:
 
                     next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
+                    wave_count += 1
                     frame_count = 0
                     
         pygame.display.flip()
