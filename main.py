@@ -62,8 +62,6 @@ buy_button = pygame.transform.scale_by(buy_button, 4)
 cancel_button = pygame.image.load("imagens/pixil-frame-0 (2).png").convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
 
-#desenha o caminho inimigos
-pygame.draw.lines(mapa, (0, 0, 0), False, PATH, 5)
 
 map_path = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -80,7 +78,7 @@ map_path = [
 ]
 
 
-#Lista de inimigos -> comentario!!!!!!
+#Lista de inimigos 
 money = 100
 vida = 100
 enemies = [
@@ -98,7 +96,7 @@ font = pygame.font.SysFont('Arial', 30) # Example: Arial font, size 30
 while running:
 
 
-    #SEÇÃO DE DESENHO
+    #SEÇÃO DE DESENHO--------------------------------------------------
     screen.fill((128,128,128))
     screen.blit(mapa, (0,0))
     tela_vida = font.render(f'{vida}', True, (255, 255, 255)) 
@@ -112,7 +110,7 @@ while running:
         placing_torres = True
         #se estiver colocando torres, aparece o botão de cancelar
     if placing_torres:
-        #mostrar a torre na tela
+        #mostrar a torre na tela para posicionar
         cursor_rect = exercito.get_rect()
         cursor_pos = pygame.mouse.get_pos()
         cursor_rect.center = cursor_pos
@@ -121,7 +119,7 @@ while running:
         if cancel_button_sprite.draw(screen):
             placing_torres = False
 
-    #SEÇÃO DE EVENTOS
+    #SEÇÃO DE EVENTOS---------------------------------
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
