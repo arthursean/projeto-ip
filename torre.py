@@ -72,15 +72,15 @@ class Torre(pygame.sprite.Sprite):
                 self.animar()
     def upgrade(self, atributo):
         if atributo == 'dano' and self.cont_f < c.max_upg_torre:
-            self.dano = (self.dano*1.2)
+            self.dano = (self.dano*1.1)
             self.cont_f += 1
             return 1
         elif atributo == 'range' and self.cont_r < c.max_upg_torre:
-            self.range = (self.range*1.2)
+            self.range = (self.range*1.1)
             self.cont_r += 1
             return 1
         elif atributo == 'cooldown' and self.cont_s < c.max_upg_torre:
-            self.cd *= 0.85
+            self.cd *= 0.9
             self.cont_s += 1
             return 1
         return 0

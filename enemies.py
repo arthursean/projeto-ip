@@ -1,6 +1,7 @@
 import pygame
 import math
 import torre
+import constantes as c
 
 class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cada tipo
 
@@ -18,7 +19,7 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         self.vivo = True
         self.eliminado = False
         self.dmg = dmg
-    def movimentação(self, vida):
+    def movimentação(self, vida, times_speed):
         # Se não chegou ao final do caminho
         if self.path_index < len(self.path) - 1:
             
@@ -30,11 +31,11 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
 
             if dist != 0:
                 dx, dy = dx / dist, dy / dist  # normaliza direção
-                self.x += dx * self.velocidade
-                self.y += dy * self.velocidade
+                self.x += dx * self.velocidade* times_speed
+                self.y += dy * self.velocidade* times_speed
                 self.rect.center = (self.x, self.y)
 
-            if dist < self.velocidade:
+            if dist < self.velocidade * times_speed:
                 self.path_index += 1
             return vida
 
