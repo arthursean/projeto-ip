@@ -54,7 +54,7 @@ def reset():
     cur_wave = remaining_waves.pop(0)
     remaining_times = list(cur_wave.keys())
     qnt_rounds = len(timeline)
-    next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
+    next_spawn = remaining_times[0] if len(remaining_times) > 0 else -1
 
 PATH = c.path
 pygame.init()
@@ -131,11 +131,6 @@ map_path = c.placebleTiles
 #Lista de inimigos -> comentario!!!!!!
 money = 60
 vida = 100
-'''cur_enemies = [
-    enemies.rapido(PATH),
-    enemies.tank(PATH),
-    enemies.supertank(PATH),
-]'''
 
 cur_enemies = []
 #cria o botão de compra
@@ -282,7 +277,7 @@ while running:
                     money += 2
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
-                    if random.random() < 0.15:
+                    if random.random() < 0.30:
                         nome = random.choice(list(COLETAVEIS.keys()))
                         imagem = COLETAVEIS[nome]
                         coletavel = Coletavel(enemy.x, enemy.y, imagem, nome)  # Passe o nome!
