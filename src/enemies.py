@@ -54,12 +54,12 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
         screen.blit(self.image, self.rect)
 class rapido(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=4, vida=60, img_path="assets/imagens/inimigos.png", dmg = 5)
+        super().__init__(path, velocidade=4, vida=60, img_path="assets/imagens/lixo_rapido.png", dmg = 5)
 
 class tank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=2, vida=75, img_path="assets/imagens/inimigos.png", dmg = 10)
+        super().__init__(path, velocidade=2, vida=75, img_path="assets/imagens/lixo_normal.png", dmg = 10)
 
 class supertank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=1.2, vida=250, img_path="assets/imagens/inimigos.png", dmg = 20)
+        super().__init__(path, velocidade=1.2, vida=250, img_path="assets/imagens/lixo_pesado.png", dmg = 20)
