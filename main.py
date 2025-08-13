@@ -35,6 +35,27 @@ def sel_torres(x, y, torre_marcada):
             t.selecionado = False
     return torre_marcada
     
+def reset():
+    global money, vida, frame_count, wave_count, torretas, coletaveis, cur_enemies
+    global qtd_forca, qtd_distancia, qtd_cooldown, timeline, remaining_waves
+    global cur_wave, remaining_times, qnt_rounds, next_spawn
+    money = 60
+    vida = 100
+    frame_count = 0
+    wave_count = 1
+    torretas.empty()
+    coletaveis.empty()
+    cur_enemies.clear()
+    qtd_forca = 0
+    qtd_distancia = 0
+    qtd_cooldown = 0
+    timeline = [c.levelData.createTimeline(i) for i in c.levelData.jsonInfo["enemySpawnTimes"]]
+    remaining_waves = timeline.copy()
+    cur_wave = remaining_waves.pop(0)
+    remaining_times = list(cur_wave.keys())
+    qnt_rounds = len(timeline)
+    next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
+
 PATH = c.path
 pygame.init()
 torretas = pygame.sprite.Group()
@@ -86,6 +107,8 @@ cancel_button = pygame.image.load(c.cancel_button_img).convert_alpha()
 cancel_button = pygame.transform.scale_by(cancel_button, 4)
 end_button = pygame.image.load(c.end_button_img).convert_alpha()
 end_button = pygame.transform.scale_by(end_button, 4)
+restart_button = pygame.image.load(c.restart_button_img).convert_alpha()
+restart_button = pygame.transform.scale_by(restart_button, 4)
 play_button = pygame.image.load(c.play_button_img).convert_alpha()
 play_button = pygame.transform.scale_by(play_button, 4)
 times_speed_button = pygame.image.load(c.times_speed_button_img).convert_alpha()
@@ -120,6 +143,7 @@ cur_enemies = []
 buy_button_sprite = button.Button(c.screen_width - 160, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 166, 130, cancel_button, True)
 end_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, end_button, True)
+restart_button_sprite = button.Button((c.screen_width//2) -40, c.screen_height//2 + 30, restart_button, True)
 play_button_sprite = button.Button((c.screen_width//2) -40, (c.screen_height//2) -20, play_button, True)
 selling_button_sprite = button.Button(c.screen_width - 160, 55, selling_button,True)
 dmg_upgrade_sprite = button.Button(c.screen_width - 160, 120, dmg_upgrade, True)
@@ -132,19 +156,12 @@ running = True
 pygame.font.init()
 font = pygame.font.SysFont('Arial', 30) #Arial 30
 
-timeline = c.enemySpawnTimes
-remaining_waves = timeline
-cur_wave = remaining_waves.pop(0)
-remaining_times = list(cur_wave.keys())
-qnt_rounds = len(timeline) + 1
-next_spawn = remaining_times[0] if len(remaining_times)>0 else -1
 
-frame_count = 0
+reset()
 end_con = ""
 state = "title_screen"
 
 times_speed = 1
-wave_count = 1
 
 while running:
     dt = clock.tick(c.clk * times_speed) / 1000
@@ -276,7 +293,7 @@ while running:
         tela_forca = font.render(f'{qtd_forca}',True,(255,255,255) )
         tela_cooldown = font.render(f'{qtd_cooldown}', True, (255,255,255))
         tela_distancia = font.render(f'{qtd_distancia}', True,(255,255,255))
-        tela_rounds = font.render(f'{wave_count}/{qnt_rounds} rounds', True, (255, 255, 255))
+        tela_rounds = font.render(f'Round {wave_count}/{qnt_rounds}', True, (255, 255, 255))
         
         #Colocando na tela as variáves que mudam conforme são recebidas
         screen.blit(tela_vida, (50, 50))
@@ -336,6 +353,25 @@ while running:
         
         if end_button_sprite.draw(screen):
             running = False
+        elif restart_button_sprite.draw(screen):
+            running = True
+            money = 60
+            vida = 100
+            frame_count = 0
+            wave_count = 1
+            torretas.empty()
+            coletaveis.empty()
+            cur_enemies.clear()
+            qtd_forca = 0
+            qtd_distancia = 0
+            qtd_cooldown = 0
+            timeline = [c.levelData.createTimeline(i) for i in c.levelData.jsonInfo["enemySpawnTimes"]]
+            remaining_waves = timeline
+            cur_wave = remaining_waves.pop(0)
+            remaining_times = list(cur_wave.keys())
+            qnt_rounds = len(timeline) + 1
+            next_spawn = remaining_times[0] if len(remaining_times)>0 else - 1
+            state = "title_screen"
         pygame.display.flip()
     #print(frame_count/60)
     clock.tick(c.clk*times_speed)

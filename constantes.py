@@ -33,7 +33,7 @@ derrota_img = "imagens/Imagem_derrota.png"
 times_speed_button_img = "imagens/acelerar.png"
 pause_button_img = "imagens/pause.png"
 continue_button_img = "imagens/continuar.png"
-
+restart_button_img = "imagens/restart.png"
 
 mapHeight = levelData.mapHeight
 mapWidth = levelData.mapWidth
