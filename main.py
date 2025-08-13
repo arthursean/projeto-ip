@@ -1,12 +1,11 @@
 import pygame
-import torre
-import enemies
 import random
-import button
-import constantes as c
-from coletaveis import COLETAVEIS
-from coletaveis import Coletavel
-import load_images as l
+from src import torre
+from src import enemies
+from src import button
+from src import constantes as c
+from src import coletaveis as cl
+from src import load_images as l
 def create_tower(x, y, money):
             if grid_x > c.mapWidth - 2:
                 print("fora dos limites")
@@ -39,7 +38,7 @@ def reset():
     global money, vida, frame_count, wave_count, torretas, coletaveis, cur_enemies
     global qtd_forca, qtd_distancia, qtd_cooldown, timeline, remaining_waves
     global cur_wave, remaining_times, qnt_rounds, next_spawn
-    money = 1000
+    money = 60
     vida = 100
     frame_count = 0
     wave_count = 1
@@ -218,9 +217,9 @@ while running:
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
                     if random.random() < 0.30:
-                        nome = random.choice(list(COLETAVEIS.keys()))
-                        imagem = COLETAVEIS[nome]
-                        coletavel = Coletavel(enemy.x, enemy.y, imagem, nome)  # Passe o nome!
+                        nome = random.choice(list(cl.COLETAVEIS.keys()))
+                        imagem = cl.COLETAVEIS[nome]
+                        coletavel = cl.Coletavel(enemy.x, enemy.y, imagem, nome)  # Passe o nome!
                         coletaveis.add(coletavel)
 
         tela_vida = font.render(f'{max(vida, 0)}', True, (255, 255, 255)) 

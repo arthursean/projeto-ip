@@ -1,7 +1,7 @@
 import pygame
 import math
-import torre
-import constantes as c
+from src import torre
+import src.constantes as c
 
 class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cada tipo
 

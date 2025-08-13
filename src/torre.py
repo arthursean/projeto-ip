@@ -1,7 +1,7 @@
 import pygame
 import math
-from dados_torreta import DADOS
-import constantes as c
+from src.dados_torreta import DADOS
+import src.constantes as c
 
 class Torre(pygame.sprite.Sprite):
     def __init__(self, pos):
