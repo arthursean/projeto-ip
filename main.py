@@ -21,7 +21,7 @@ def create_tower(x, y, money):
                 return money
             print(f"Torre criada nos blocos {grid_x} e {grid_y}")
             torretas.add(torre.Torre((grid_x, grid_y)))
-            return money - 10
+            return money - c.turret_price
 
 def sel_torres(x, y, torre_marcada):
     if torre_marcada and grid_x > c.mapWidth - 2:
@@ -172,7 +172,7 @@ while running:
         if buy_button_sprite.draw(screen):
                 placing_torres = True
             #se estiver colocando torres, aparece o botão de cancelar
-        if money < 10:
+        if money < c.turret_price:
             placing_torres = False
         if placing_torres:
             #mostrar a torre na tela
@@ -263,7 +263,7 @@ while running:
                     money += 10
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
-                    if random.random() < 0.9:
+                    if random.random() < 0.25:
                         nome = random.choice(list(COLETAVEIS.keys()))
                         imagem = COLETAVEIS[nome]
                         coletavel = Coletavel(enemy.x, enemy.y, imagem, nome)  # Passe o nome!
