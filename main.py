@@ -121,7 +121,7 @@ while running:
         screen.blit(l.forca, (900, 600-210))
         screen.blit(l.distancia, (975, 600-210))
         screen.blit(l.cooldown, (1050, 600-210))
-         
+        screen.blit(l.madeira, (816, 0))         
         #desenha o botão de compra
         if l.buy_button_sprite.draw(screen):
                 placing_torres = True
