@@ -6,7 +6,7 @@ screen = pygame.display.set_mode((c.screen_width + c.side_panel, c.screen_height
 
 
 titulo = pygame.image.load(c.titulo_img).convert_alpha()
-titulo = pygame.transform.scale_by(titulo, 3)
+titulo = pygame.transform.scale_by(titulo, 3.5)
 tela_derrota = pygame.image.load(c.derrota_img)
 tela_derrota_formatada = pygame.transform.scale(tela_derrota, (592,351))
 tela_vitoria = pygame.image.load(c.vitoria_img)
@@ -56,7 +56,7 @@ buy_button_sprite = button.Button(c.screen_width - 190, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 195, 130, cancel_button, True)
 end_button_sprite = button.Button((c.screen_width//2) + 10, (c.screen_height//2) - 80, end_button, True)
 restart_button_sprite = button.Button((c.screen_width//2), c.screen_height//2 + 30, restart_button, True)
-play_button_sprite = button.Button((c.screen_width//2), (c.screen_height//2) -20, play_button, True)
+play_button_sprite = button.Button((c.screen_width//2), (c.screen_height//2) + 10, play_button, True)
 selling_button_sprite = button.Button(c.screen_width - 195, 75, selling_button,True)
 dmg_upgrade_sprite = button.Button(c.screen_width - 190, 150, dmg_upgrade, True)
 range_upgrade_sprite = button.Button(c.screen_width - 190, 200, range_upgrade, True)

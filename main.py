@@ -101,7 +101,7 @@ while running:
     dt = clock.tick(c.clk * times_speed) / 1000
     if state == "title_screen":
         screen.blit(l.tela_inicial_formatada, (0,0))
-        screen.blit(l.titulo, (c.screen_width//2 - 250, 150))
+        screen.blit(l.titulo, (c.screen_width//2 - 320, 100))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
