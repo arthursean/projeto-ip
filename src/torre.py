@@ -83,6 +83,7 @@ class Torre(pygame.sprite.Sprite):
             self.cd *= 0.9
             self.cont_s += 1
             return 1
+        print("Você já evoluiu esse atributo 2 vezes")
         return 0
     def change_animacao(self, path):
         self.pos_animacao = 0
