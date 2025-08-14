@@ -4,7 +4,7 @@ Projeto realizado para a disciplina de Introdução a Programação da Universid
 Alunos: João Guilherme Lemos Duarte de Oliveira (jgldo), Arthur Sean Cerqueira Campos (ascc2), Isabela Possídio Amorim (ipa), Arthur Fidney da Cunha Cavalcante Correia (afccc), Diogo Cavalcanti Carneiro de Albuquerque (dcca), Felipe Andrade Leite Santos (fals2)
 <br>Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
 
-### 0. Como Rodar
+### ❗​| 0. Como Rodar
 
 Baixe o Python 3.x
 <br>Instale o Pygame com o comando: pip install pygame
