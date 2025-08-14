@@ -1,4 +1,4 @@
-![Uploading image.png…]()
+<img width="2367" height="1392" alt="image" src="https://github.com/user-attachments/assets/3a27a69a-24f3-4b16-9146-08d9df36c8a3" />
 
 # 🎮 | Chico Science's Crab Defense
 Projeto realizado para a disciplina de Introdução a Programação da Universidade Federal de Pernambuco
