@@ -3,6 +3,11 @@ Projeto realizado para a disciplina de Introdução a Programação da Universid
 Alunos: João Guilherme Lemos Duarte de Oliveira (jgldo), Arthur Sean Cerqueira Campos (ascc2), Isabela Possídio Amorim (ipa), Arthur Fidney da Cunha Cavalcante Correia (afccc), Diogo Cavalcanti Carneiro de Albuquerque (dcca), Felipe Andrade Leite Santos (fals2)
 Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
 
+### 0. Como Rodar
+
+pip install pygame
+git clone https://github.com/arthursean/projeto-ip.git ou baixe o .zip pelo github
+execute o main.py
 ### 👀 | 1. Visão Geral
    
 O projeto implementa um jogo no estilo Tower Defense em que caranguejos protegem um mangue contra sacos de lixo, e ao destruí-los conseguem obter três tipos de upgrades que podem melhorar sua velocidade, força ou alcance. Ele é construído em Python com a biblioteca Pygame utilizando uma arquitetura modular que separa os elementos centrais do jogo (torres, inimigos, botões, constantes, coletáveis) em arquivos independentes
