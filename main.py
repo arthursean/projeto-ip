@@ -243,11 +243,11 @@ while running:
         frame_count += 1
         if(vida <= 0):
             state = "end_screen"
-            end_con = "GAME OVER"
+            end_con = "O mangue foi destruído! Não desista!"
         elif(len(remaining_times)==0 and not cur_enemies):
             if len(remaining_waves)<= 0:
                 state = "end_screen"
-                end_con = "Você ganhou o jogo!"
+                end_con = "Você salvou o mangue!"
             else:
                 if l.continue_sprite.draw(screen):
                     cur_wave = remaining_waves.pop(0)
