@@ -4,6 +4,9 @@ from src import button
 pygame.init()
 screen = pygame.display.set_mode((c.screen_width + c.side_panel, c.screen_height))
 
+
+titulo = pygame.image.load(c.titulo_img).convert_alpha()
+titulo = pygame.transform.scale_by(titulo, 3)
 tela_derrota = pygame.image.load(c.derrota_img)
 tela_derrota_formatada = pygame.transform.scale(tela_derrota, (592,351))
 tela_vitoria = pygame.image.load(c.vitoria_img)

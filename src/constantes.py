@@ -34,6 +34,7 @@ times_speed_button_img = "assets/imagens/acelerar.png"
 pause_button_img = "assets/imagens/pause.png"
 continue_button_img = "assets/imagens/continuar.png"
 restart_button_img = "assets/imagens/restart.png"
+titulo_img = "assets/imagens/titulo.png"
 
 mapHeight = levelData.mapHeight
 mapWidth = levelData.mapWidth
