@@ -5,6 +5,7 @@ Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
 
 ### 0. Como Rodar
 
+baixe o python 3.x
 pip install pygame
 git clone https://github.com/arthursean/projeto-ip.git ou baixe o .zip pelo github
 execute o main.py
