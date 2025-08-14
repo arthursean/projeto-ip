@@ -7,7 +7,7 @@ from src import constantes as c
 from src import coletaveis as cl
 from src import load_images as l
 def create_tower(x, y, money):
-            if grid_x > c.mapWidth - 2:
+            if grid_x > c.mapWidth - 1:
                 print("fora dos limites")
                 return money
             for t in torretas:
