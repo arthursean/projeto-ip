@@ -60,7 +60,7 @@ Pygame: Biblioteca robusta para desenvolvimento de jogos 2D em Python, com supor
       pygame.time.Clock → Controle da taxa de atualização (FPS).
   
 Random: Necessário para a geração aleatória de coletáveis, adicionando imprevisibilidade e rejogabilidade ao jogo.
-Piskel e Pixilart: Usado para a criação e adaptação dos sprites utilizados.
+<br>Piskel e Pixilart: Usado para a criação e adaptação dos sprites utilizados.
 
 ### 📝 | 5. Justificativa da Arquitetura
 
@@ -153,9 +153,10 @@ Durante o projeto, aprendemos a importância de planejamento, comunicação e te
 ### 📷 | 8. Capturas de tela
 <img width="2367" height="1392" alt="image" src="https://github.com/user-attachments/assets/3a27a69a-24f3-4b16-9146-08d9df36c8a3" />
 <img width="1472" height="877" alt="image" src="https://github.com/user-attachments/assets/54503a1d-61f0-4ff0-a368-f4d74bc68574" />
-<img width="2354" height="1413" alt="image" src="https://github.com/user-attachments/assets/bbea2174-0232-456e-b209-a3ec5ed5b7eb" />
 <img width="1476" height="879" alt="image" src="https://github.com/user-attachments/assets/ffa29268-b2ef-4e81-bfc8-5b23c5ae4c6a" />
 <img width="2365" height="1396" alt="image" src="https://github.com/user-attachments/assets/9cd90006-4246-46e6-878e-8e2a2ac88f9e" />
+<img width="2354" height="1413" alt="image" src="https://github.com/user-attachments/assets/bbea2174-0232-456e-b209-a3ec5ed5b7eb" />
+
 
 
 
