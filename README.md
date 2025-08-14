@@ -1,13 +1,13 @@
-# projeto-ip
+# 🎮 | projeto-ip
 Projeto realizado para a disciplina de Introdução a Programação da Universidade Federal de Pernambuco
 Alunos: João Guilherme Lemos Duarte de Oliveira (jgldo), Arthur Sean Cerqueira Campos (ascc2), Isabela Possídio Amorim (ipa), Arthur Fidney da Cunha Cavalcante Correia (afccc), Diogo Cavalcanti Carneiro de Albuquerque (dcca), Felipe Andrade Leite Santos (fals2)
 Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
 
-### 1. Visão Geral
+### 👀 | 1. Visão Geral
    
 O projeto implementa um jogo no estilo Tower Defense em que caranguejos protegem um mangue contra sacos de lixo, e ao destruí-los conseguem obter três tipos de upgrades que podem melhorar sua velocidade, força ou alcance. Ele é construído em Python com a biblioteca Pygame utilizando uma arquitetura modular que separa os elementos centrais do jogo (torres, inimigos, botões, constantes, coletáveis) em arquivos independentes
 
-### 2. Arquitetura e Organização
+### 📋 | 2. Arquitetura e Organização
    
 O projeto segue uma arquitetura modular e orientada a objetos em partes específicas, separando responsabilidades por arquivos:
 
@@ -33,7 +33,7 @@ O fluxo do jogo é controlado pelo loop principal e por um sistema de estados (s
 
 -> end_screen → Tela de vitória ou derrota.
 
-### 3. Bibliotecas e Ferramentas Utilizadas
+### 📚 | 3. Bibliotecas e Ferramentas Utilizadas
 Python: Linguagem principal por sua simplicidade, flexibilidade e ampla comunidade de desenvolvimento de jogos com Pygame.
 
 Pygame: Biblioteca robusta para desenvolvimento de jogos 2D em Python, com suporte a gráficos, áudio, eventos de entrada e controle de tempo.
@@ -54,7 +54,7 @@ Pygame: Biblioteca robusta para desenvolvimento de jogos 2D em Python, com supor
   
 Random: Necessário para a geração aleatória de coletáveis, adicionando imprevisibilidade e rejogabilidade ao jogo.
 
-### 4. Justificativa da Arquitetura
+### 📝 | 4. Justificativa da Arquitetura
 
 Separação de Módulos: Facilita a manutenção, permitindo que cada componente (torres, inimigos, botões) seja desenvolvido e testado isoladamente.
 
@@ -64,7 +64,7 @@ Sistema de Estados: Garante controle claro sobre as fases do jogo e previne exec
 
 Sprites e Groups: Permitem atualização e renderização eficientes de múltiplos objetos, melhorando performance e clareza do código.
 
-### 5. Divisão de trabalho
+### 💻 | 5. Divisão de trabalho
 
 Diogo Albuquerque - Upgrades, Apresentação
 
