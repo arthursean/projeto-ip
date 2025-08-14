@@ -244,7 +244,7 @@ while running:
         frame_count += 1
         if(vida <= 0):
             state = "end_screen"
-            end_con = "O mangue foi destruído! Não desista!"
+            end_con = "O mangue foi destruído! Não desista agora!"
         elif(len(remaining_times)==0 and not cur_enemies):
             if len(remaining_waves)<= 0:
                 state = "end_screen"
@@ -273,7 +273,7 @@ while running:
 
         tela_end = font.render(f'{end_con}', True, (255, 255, 255))
         moldura_preta = pygame.draw.rect(screen, (101, 67, 33), (1184//4 - 10, 702//4 - 10, 615, 368))
-        if end_con == "Você ganhou o jogo!":
+        if end_con == "Você salvou o mangue!":
             screen.blit(l.tela_vitoria_formatada,((1184//4), (702//4)))
         else:
             screen.blit(l.tela_derrota_formatada, ((1184//4),(702//4)))
