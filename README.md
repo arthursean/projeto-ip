@@ -1,8 +1,14 @@
-# 🎮 | projeto-ip
+# 🎮 | Chico Science's Crab Defense
 Projeto realizado para a disciplina de Introdução a Programação da Universidade Federal de Pernambuco
 Alunos: João Guilherme Lemos Duarte de Oliveira (jgldo), Arthur Sean Cerqueira Campos (ascc2), Isabela Possídio Amorim (ipa), Arthur Fidney da Cunha Cavalcante Correia (afccc), Diogo Cavalcanti Carneiro de Albuquerque (dcca), Felipe Andrade Leite Santos (fals2)
 Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
 
+### 0. Como Rodar
+
+baixe o python 3.x
+pip install pygame
+git clone https://github.com/arthursean/projeto-ip.git ou baixe o .zip pelo github
+execute o main.py
 ### 👀 | 1. Visão Geral
    
 O projeto implementa um jogo no estilo Tower Defense em que caranguejos protegem um mangue contra sacos de lixo, e ao destruí-los conseguem obter três tipos de upgrades que podem melhorar sua velocidade, força ou alcance. Ele é construído em Python com a biblioteca Pygame utilizando uma arquitetura modular que separa os elementos centrais do jogo (torres, inimigos, botões, constantes, coletáveis) em arquivos independentes
@@ -143,3 +149,7 @@ O maior desafio do projeto foi equilibrar a dificuldade do jogo, ajustando as po
 Durante o projeto, aprendemos a importância de planejamento, comunicação e testes constantes. Percebemos que pequenos erros de atenção, como no uso de comandos do Git, podem gerar retrabalho, e que trabalhar em equipe exige organização para evitar conflitos no código. Também desenvolvemos habilidades técnicas, como equilibrar mecânicas de jogo e ajustar parâmetros para criar uma experiência divertida e desafiadora. No final, entendemos que a colaboração e a persistência são essenciais para transformar ideias em um produto funcional.
 
 ### 📷 | 8. Capturas de tela
+<img width="1472" height="877" alt="image" src="https://github.com/user-attachments/assets/54503a1d-61f0-4ff0-a368-f4d74bc68574" />
+<img width="2354" height="1413" alt="image" src="https://github.com/user-attachments/assets/bbea2174-0232-456e-b209-a3ec5ed5b7eb" />
+
+
