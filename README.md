@@ -1,4 +1,4 @@
-# 🎮 | projeto-ip
+<img width="2365" height="1396" alt="image" src="https://github.com/user-attachments/assets/b2c2769f-4e4e-4cb6-8507-318f0f18d133" /># 🎮 | projeto-ip
 Projeto realizado para a disciplina de Introdução a Programação da Universidade Federal de Pernambuco
 Alunos: João Guilherme Lemos Duarte de Oliveira (jgldo), Arthur Sean Cerqueira Campos (ascc2), Isabela Possídio Amorim (ipa), Arthur Fidney da Cunha Cavalcante Correia (afccc), Diogo Cavalcanti Carneiro de Albuquerque (dcca), Felipe Andrade Leite Santos (fals2)
 Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
@@ -143,3 +143,6 @@ O maior desafio do projeto foi equilibrar a dificuldade do jogo, ajustando as po
 Durante o projeto, aprendemos a importância de planejamento, comunicação e testes constantes. Percebemos que pequenos erros de atenção, como no uso de comandos do Git, podem gerar retrabalho, e que trabalhar em equipe exige organização para evitar conflitos no código. Também desenvolvemos habilidades técnicas, como equilibrar mecânicas de jogo e ajustar parâmetros para criar uma experiência divertida e desafiadora. No final, entendemos que a colaboração e a persistência são essenciais para transformar ideias em um produto funcional.
 
 ### 📷 | 8. Capturas de tela
+<img width="2365" height="1396" alt="image" src="https://github.com/user-attachments/assets/8a9877e8-2bc2-45b7-b5a7-8645a35a4f26" />
+<img width="2365" height="1396" alt="image" src="https://github.com/user-attachments/assets/2aded365-65c0-49a6-92e1-06e64344932b" />
+
