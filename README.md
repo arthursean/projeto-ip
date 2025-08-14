@@ -7,8 +7,8 @@ Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
 ### 0. Como Rodar
 
 Baixe o Python 3.x
-\n Instale o Pygame com o comando: pip install pygame
-\n Use git clone https://github.com/arthursean/projeto-ip.git ou baixe o .zip pelo github
+<br>Instale o Pygame com o comando: pip install pygame
+<br>Use git clone https://github.com/arthursean/projeto-ip.git ou baixe o .zip pelo github
 execute o main.py
 ### 👀 | 1. Visão Geral
    
