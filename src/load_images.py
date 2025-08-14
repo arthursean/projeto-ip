@@ -51,6 +51,8 @@ range_upgrade = pygame.image.load(c.upgrade_range_img).convert_alpha()
 range_upgrade = pygame.transform.scale_by(range_upgrade, 4)
 speed_upgrade = pygame.image.load(c.upgrade_speed_img).convert_alpha()
 speed_upgrade = pygame.transform.scale_by(speed_upgrade, 4)
+madeira = pygame.image.load(c.madeira_img)
+
 
 buy_button_sprite = button.Button(c.screen_width - 190, 10, buy_button,True)
 cancel_button_sprite = button.Button(c.screen_width - 195, 130, cancel_button, True)

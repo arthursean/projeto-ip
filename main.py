@@ -7,7 +7,7 @@ from src import constantes as c
 from src import coletaveis as cl
 from src import load_images as l
 def create_tower(x, y, money):
-            if grid_x > c.mapWidth - 2:
+            if grid_x > c.mapWidth - 1:
                 print("fora dos limites")
                 return money
             for t in torretas:
@@ -121,6 +121,7 @@ while running:
         screen.blit(l.forca, (900, 600-210))
         screen.blit(l.distancia, (975, 600-210))
         screen.blit(l.cooldown, (1050, 600-210))
+        screen.blit(l.madeira, (816, 0))
          
         #desenha o botão de compra
         if l.buy_button_sprite.draw(screen):
