@@ -2,7 +2,7 @@
 # 🎮 | Chico Science's Crab Defense
 Projeto realizado para a disciplina de Introdução a Programação da Universidade Federal de Pernambuco
 Alunos: João Guilherme Lemos Duarte de Oliveira (jgldo), Arthur Sean Cerqueira Campos (ascc2), Isabela Possídio Amorim (ipa), Arthur Fidney da Cunha Cavalcante Correia (afccc), Diogo Cavalcanti Carneiro de Albuquerque (dcca), Felipe Andrade Leite Santos (fals2)
-Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
+<br>Relatório Técnico — Arquitetura do Jogo “Chico Science's Mangue Defense”
 
 ### 0. Como Rodar
 
@@ -60,6 +60,7 @@ Pygame: Biblioteca robusta para desenvolvimento de jogos 2D em Python, com supor
       pygame.time.Clock → Controle da taxa de atualização (FPS).
   
 Random: Necessário para a geração aleatória de coletáveis, adicionando imprevisibilidade e rejogabilidade ao jogo.
+Piskel e Pixilart: Usado para a criação e adaptação dos sprites utilizados.
 
 ### 📝 | 5. Justificativa da Arquitetura
 
