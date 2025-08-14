@@ -6,15 +6,17 @@ import src.constantes as c
 class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cada tipo
 
 
-    def __init__(self, path, vida, velocidade, img_path, dmg):
+    def __init__(self, path, vida, velocidade, img_path_array, dmg):
         super().__init__()
         self.path = path
         self.path_index = 0
         self.x, self.y = self.path[0]
         self.vida=vida
+        self.vida_init = vida
         self.velocidade=velocidade
-        self.img_path = img_path
-        self.image = pygame.image.load(img_path)
+        self.img_path_array = img_path_array
+        self.img_path = self.img_path_array[0]
+        self.image = pygame.image.load(self.img_path)
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         self.vivo = True
         self.eliminado = False
@@ -52,14 +54,20 @@ class inimigo: #definindo a classe dos inimigos, depois farei a subclasse de cad
             self.eliminado = True
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+    def update(self):
+        if(self.vida <= self.vida_init * 0.5):
+            self.img_path = self.img_path_array[1]
+            self.image = pygame.image.load(self.img_path)
+            self.rect = self.image.get_rect(center=(self.x, self.y))
+
 class rapido(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=4, vida=60, img_path="assets/imagens/lixo_rapido.png", dmg = 5)
+        super().__init__(path, velocidade=4, vida=60, img_path_array=["assets/imagens/lixo_rapido.png", "assets/imagens/lixo_rapido_dan.png"], dmg = 5)
 
 class tank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=2, vida=75, img_path="assets/imagens/lixo_normal.png", dmg = 10)
+        super().__init__(path, velocidade=2, vida=75, img_path_array= ["assets/imagens/lixo_normal.png", "assets/imagens/lixo_normal_dan.png"], dmg = 10)
 
 class supertank(inimigo):
     def __init__(self, path):
-        super().__init__(path, velocidade=1.2, vida=250, img_path="assets/imagens/lixo_pesado.png", dmg = 20)
+        super().__init__(path, velocidade=1.2, vida=250, img_path_array=["assets/imagens/lixo_pesado.png", "assets/imagens/lixo_pesado_dan.png"], dmg = 20)

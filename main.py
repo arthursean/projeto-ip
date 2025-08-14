@@ -211,6 +211,7 @@ while running:
 
         for enemy in cur_enemies:
             vida = enemy.movimentação(vida, times_speed)
+            enemy.update()
             enemy.draw(screen)
             if not enemy.vivo:
                 if enemy.eliminado:
