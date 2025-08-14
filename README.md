@@ -22,7 +22,7 @@ O projeto segue uma arquitetura modular e orientada a objetos em partes específ
  --------
 
 Essa organização permite alta coesão e baixo acoplamento, facilitando manutenção e adição de novas funcionalidades.
-3. Estrutura Lógica do Jogo
+### 📂 | 3. Estrutura Lógica do Jogo
 O fluxo do jogo é controlado pelo loop principal e por um sistema de estados (state), que definem a tela e a lógica em execução:
 
 -> title_screen → Tela inicial com botão de iniciar.
@@ -33,7 +33,7 @@ O fluxo do jogo é controlado pelo loop principal e por um sistema de estados (s
 
 -> end_screen → Tela de vitória ou derrota.
 
-### 📚 | 3. Bibliotecas e Ferramentas Utilizadas
+### 📚 | 4. Bibliotecas e Ferramentas Utilizadas
 Python: Linguagem principal por sua simplicidade, flexibilidade e ampla comunidade de desenvolvimento de jogos com Pygame.
 
 Pygame: Biblioteca robusta para desenvolvimento de jogos 2D em Python, com suporte a gráficos, áudio, eventos de entrada e controle de tempo.
@@ -54,7 +54,7 @@ Pygame: Biblioteca robusta para desenvolvimento de jogos 2D em Python, com supor
   
 Random: Necessário para a geração aleatória de coletáveis, adicionando imprevisibilidade e rejogabilidade ao jogo.
 
-### 📝 | 4. Justificativa da Arquitetura
+### 📝 | 5. Justificativa da Arquitetura
 
 Separação de Módulos: Facilita a manutenção, permitindo que cada componente (torres, inimigos, botões) seja desenvolvido e testado isoladamente.
 
@@ -64,7 +64,7 @@ Sistema de Estados: Garante controle claro sobre as fases do jogo e previne exec
 
 Sprites e Groups: Permitem atualização e renderização eficientes de múltiplos objetos, melhorando performance e clareza do código.
 
-### 💻 | 5. Divisão de trabalho
+### 💻 | 6. Divisão de trabalho
 
 Diogo Albuquerque - Upgrades, Apresentação
 
@@ -128,7 +128,7 @@ Arthur Fidney -  Mapa, path dos inimigos, sistema de vida
     
     cur_wave e timeline para mapear momentos (frames) a listas de inimigos que vão aparecer.
 
-### 6. Desafios, erros e lições aprendidas
+### 🔍 | 7. Desafios, erros e lições aprendidas
 
 -**Qual foi o maior erro cometido durante o projeto? Como vocês lidaram com ele?**
 
@@ -141,3 +141,5 @@ O maior desafio do projeto foi equilibrar a dificuldade do jogo, ajustando as po
 -**Quais as lições aprendidas durante o projeto?**
 
 Durante o projeto, aprendemos a importância de planejamento, comunicação e testes constantes. Percebemos que pequenos erros de atenção, como no uso de comandos do Git, podem gerar retrabalho, e que trabalhar em equipe exige organização para evitar conflitos no código. Também desenvolvemos habilidades técnicas, como equilibrar mecânicas de jogo e ajustar parâmetros para criar uma experiência divertida e desafiadora. No final, entendemos que a colaboração e a persistência são essenciais para transformar ideias em um produto funcional.
+
+### 📷 | 8. Capturas de tela
