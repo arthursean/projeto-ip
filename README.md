@@ -12,7 +12,7 @@ Baixe o Python 3.x
 <br>execute o main.py
 ### 👀 | 1. Visão Geral
    
-O projeto implementa um jogo no estilo Tower Defense em que caranguejos protegem um mangue contra sacos de lixo, e ao destruí-los conseguem obter três tipos de upgrades que podem melhorar sua velocidade, força ou alcance. Ele é construído em Python com a biblioteca Pygame utilizando uma arquitetura modular que separa os elementos centrais do jogo (torres, inimigos, botões, constantes, coletáveis) em arquivos independentes
+O projeto implementa um jogo no estilo Tower Defense, inspirado no movimento manguebeat, liderad pelo ilustre cantor e compositor Chico Science. Nele, caranguejos, determinados a defender seu lar, protegem um mangue, ameaçado por sacolas, sacos e latas de lixo. Ao destruí-los, conseguem obter três tipos de upgrades, sendo eles latas de pitu, óculos escuros e cabeças de La Ursa que podem melhorar sua velocidade, alcance e força, respectivamente. Ele é construído em Python com a biblioteca Pygame utilizando uma arquitetura modular que separa os elementos centrais do jogo (torres, inimigos, botões, constantes, coletáveis) em arquivos independentes
 
 ### 📋 | 2. Arquitetura e Organização
    
