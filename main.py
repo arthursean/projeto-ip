@@ -218,7 +218,7 @@ while running:
                     money += 2
                 cur_enemies.remove(enemy)
                 if enemy.vida <= 0:
-                    if random.random() < 0.30:
+                    if random.random() < 0.45:
                         nome = random.choice(list(cl.COLETAVEIS.keys()))
                         imagem = cl.COLETAVEIS[nome]
                         coletavel = cl.Coletavel(enemy.x, enemy.y, imagem, nome)  # Passe o nome!
